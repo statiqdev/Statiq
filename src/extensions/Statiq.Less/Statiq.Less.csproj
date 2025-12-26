@@ -4,7 +4,7 @@
     <PackageTags>Statiq Static StaticContent StaticSite Blog BlogEngine CSS Less LessCSS</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="dotless.Core" Version="0.0.1" />
+    <PackageReference Include="dotless.Core" Version="1.6.7" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\core\Statiq.Common\Statiq.Common.csproj" />

@@ -4,7 +4,7 @@
     <PackageTags>Statiq Static StaticContent StaticSite Blog BlogEngine CodeAnalysis Roslyn XmlDocComments DocComments</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Buildalyzer.Workspaces" Version="4.1.2" />
+    <PackageReference Include="Buildalyzer.Workspaces" Version="8.0.0" />
     <PackageReference Include="System.Linq.Async" Version="6.0.1" />
   </ItemGroup>
   <ItemGroup>
