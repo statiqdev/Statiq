@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -82,6 +83,18 @@ namespace Statiq.Scriban
         }
 
         public bool TrySetValue(TemplateContext context, SourceSpan span, object target, string member, object value) => false;
+        public bool TryGetItem(TemplateContext context, SourceSpan span, object target, object index, out object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TrySetItem(TemplateContext context, SourceSpan span, object target, object index, object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool HasIndexer { get; }
+        public Type IndexType { get; }
 
         private ImmutableDictionary<string, string> GetMetadata(IDocument document)
         {

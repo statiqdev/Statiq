@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using Scriban;
 using Scriban.Parsing;
@@ -43,6 +42,12 @@ namespace Statiq.Scriban
         }
 
         public bool CanWrite(string member) => !_documentAccessor.HasMember(_document, member);
+        public bool TrySetValue(TemplateContext context, SourceSpan span, string member, object value, bool readOnly)
+        {
+            _locals[member] = value; // TODO: We are ignoring readOnly.
+
+            return true;
+        }
 
         public void SetValue(TemplateContext context, SourceSpan span, string member, object value, bool readOnly)
             => _locals[member] = value; // TODO: We are ignoring readOnly.
