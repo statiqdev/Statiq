@@ -187,7 +187,10 @@ namespace Statiq.Handlebars.Tests
                     .WithHelper(
                         "link_to",
                         Config.FromValue<HandlebarsHelper>((writer, context, _) =>
-                            HandlebarsExtensions.WriteSafeString(writer, "<a href='" + context.url + "'>" + context.text + "</a>")));
+                        {
+                            dynamic model = context.Value;
+                            HandlebarsExtensions.WriteSafeString(writer, $"<a href='{model.url}'>{model.text}</a>");
+                        }));
 
                 // When
                 TestDocument result = await ExecuteAsync(document, handlebars).SingleAsync();
@@ -232,7 +235,7 @@ The animal, Chewy, is not a dog.
                             }
                             string left = arguments[0] as string;
                             string right = arguments[1] as string;
-                            if (left == right)
+                            if (left != right)
                             {
                                 options.Template(writer, null);
                             }
@@ -301,8 +304,12 @@ The animal, Chewy, is not a dog.
                     input);
 
                 RenderHandlebars handlebars = new RenderHandlebars()
-                    .Configure((_, __, x) => x.RegisterHelper("link_to", (writer, context, _) =>
-                        HandlebarsExtensions.WriteSafeString(writer, "<a href='" + context.url + "'>" + context.text + "</a>")));
+                    .Configure((_, __, x) => x.RegisterHelper("link_to",
+                        (writer, context, _) =>
+                        {
+                            dynamic model = context.Value;
+                            HandlebarsExtensions.WriteSafeString(writer, $"<a href='{model.url}'>{model.text}</a>");
+                        }));
 
                 // When
                 TestDocument result = await ExecuteAsync(document, handlebars).SingleAsync();
@@ -345,7 +352,7 @@ The animal, Chewy, is not a dog.
                             }
                             string left = arguments[0] as string;
                             string right = arguments[1] as string;
-                            if (left == right)
+                            if (left != right)
                             {
                                 options.Template(writer, null);
                             }
