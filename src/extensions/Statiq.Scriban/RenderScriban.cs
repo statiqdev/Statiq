@@ -102,17 +102,6 @@ namespace Statiq.Scriban
             return this;
         }
 
-        /// <summary>
-        /// Specifies that templates should be treated as Liquid templates instead of Scriban.
-        /// Short for doing <c>WithLexerOptions(new LexerOptions { Mode = ScriptMode.Liquid })</c>.
-        /// </summary>
-        /// <returns>The current module instance.</returns>
-        public RenderScriban AsLiquid()
-        {
-            _lexerOptions.Mode = ScriptMode.Liquid;
-            return this;
-        }
-
         /// <inheritdoc />
         protected override async Task<IEnumerable<IDocument>> ExecuteInputAsync(IDocument input, IExecutionContext context)
         {
