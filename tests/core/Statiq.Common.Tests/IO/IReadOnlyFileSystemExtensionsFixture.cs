@@ -32,7 +32,7 @@ namespace Statiq.Common.Tests.IO
                 IFile result = fileSystem.GetInputFile(input);
 
                 // Then
-                Assert.AreEqual(expected, result.Path.FullPath);
+                Assert.That(result.Path.FullPath, Is.EqualTo(expected));
             }
 
             [Test]
@@ -47,7 +47,7 @@ namespace Statiq.Common.Tests.IO
                 IFile result = fileSystem.GetInputFile("../bar.txt");
 
                 // Then
-                Assert.AreEqual("/a/x/bar.txt", result.Path.FullPath);
+                Assert.That(result.Path.FullPath, Is.EqualTo("/a/x/bar.txt"));
             }
 
             [Test]
@@ -62,7 +62,7 @@ namespace Statiq.Common.Tests.IO
                 IFile result = fileSystem.GetInputFile("bar.txt");
 
                 // Then
-                Assert.AreEqual("/a/x/bar.txt", result.Path.FullPath);
+                Assert.That(result.Path.FullPath, Is.EqualTo("/a/x/bar.txt"));
             }
 
             [Test]
@@ -77,7 +77,7 @@ namespace Statiq.Common.Tests.IO
                 IFile result = fileSystem.GetInputFile("../bar.txt");
 
                 // Then
-                Assert.AreEqual("/a/x/bar.txt", result.Path.FullPath);
+                Assert.That(result.Path.FullPath, Is.EqualTo("/a/x/bar.txt"));
             }
         }
 
@@ -93,8 +93,8 @@ namespace Statiq.Common.Tests.IO
                 IDirectory result = fileSystem.GetInputDirectory("A/B/C");
 
                 // Then
-                Assert.IsInstanceOf<VirtualInputDirectory>(result);
-                Assert.AreEqual("A/B/C", result.Path.FullPath);
+                Assert.That(result, Is.InstanceOf<VirtualInputDirectory>());
+                Assert.That(result.Path.FullPath, Is.EqualTo("A/B/C"));
             }
 
             [Test]
@@ -107,8 +107,8 @@ namespace Statiq.Common.Tests.IO
                 IDirectory result = fileSystem.GetInputDirectory("../A/B/C");
 
                 // Then
-                Assert.IsInstanceOf<VirtualInputDirectory>(result);
-                Assert.AreEqual("../A/B/C", result.Path.FullPath);
+                Assert.That(result, Is.InstanceOf<VirtualInputDirectory>());
+                Assert.That(result.Path.FullPath, Is.EqualTo("../A/B/C"));
             }
 
             [Test]
@@ -121,8 +121,8 @@ namespace Statiq.Common.Tests.IO
                 IDirectory result = fileSystem.GetInputDirectory();
 
                 // Then
-                Assert.IsInstanceOf<VirtualInputDirectory>(result);
-                Assert.AreEqual(string.Empty, result.Path.FullPath);
+                Assert.That(result, Is.InstanceOf<VirtualInputDirectory>());
+                Assert.That(result.Path.FullPath, Is.EqualTo(string.Empty));
             }
 
             [Test]
@@ -135,7 +135,7 @@ namespace Statiq.Common.Tests.IO
                 IDirectory result = fileSystem.GetInputDirectory("/A/B/C");
 
                 // Then
-                Assert.AreEqual("/A/B/C", result.Path.FullPath);
+                Assert.That(result.Path.FullPath, Is.EqualTo("/A/B/C"));
             }
         }
 
@@ -158,7 +158,7 @@ namespace Statiq.Common.Tests.IO
                 IEnumerable<IDirectory> result = fileSystem.GetInputDirectories();
 
                 // Then
-                CollectionAssert.AreEquivalent(
+                Assert.That(result.Select(x => x.Path.FullPath), Is.EquivalentTo(
                     new[]
                 {
                     "/a/theme",
@@ -168,7 +168,7 @@ namespace Statiq.Common.Tests.IO
                     "/a/x",
                     "/a/y",
                     "/z"
-                }, result.Select(x => x.Path.FullPath));
+                }));
             }
         }
 
@@ -438,7 +438,7 @@ namespace Statiq.Common.Tests.IO
                 IEnumerable<IFile> results = fileSystem.GetFiles(dir, null, "**/foo.txt");
 
                 // Then
-                CollectionAssert.AreEquivalent(new[] { "/a/b/c/foo.txt" }, results.Select(x => x.Path.FullPath));
+                Assert.That(results.Select(x => x.Path.FullPath), Is.EquivalentTo(new[] { "/a/b/c/foo.txt" }));
             }
 
             [TestCase("/", new[] { "/a/b/c/foo.txt" }, new[] { "/a/b/c/foo.txt" }, true)]
@@ -486,7 +486,7 @@ namespace Statiq.Common.Tests.IO
                 IEnumerable<IFile> results = fileSystem.GetFiles(dir, patterns);
 
                 // Then
-                CollectionAssert.AreEquivalent(expected, results.Select(x => x.Path.FullPath));
+                Assert.That(results.Select(x => x.Path.FullPath), Is.EquivalentTo(expected));
 
                 if (reverseSlashes)
                 {
@@ -494,7 +494,7 @@ namespace Statiq.Common.Tests.IO
                     results = fileSystem.GetFiles(dir, patterns.Select(x => x.Replace("/", "\\")));
 
                     // Then
-                    CollectionAssert.AreEquivalent(expected, results.Select(x => x.Path.FullPath));
+                    Assert.That(results.Select(x => x.Path.FullPath), Is.EquivalentTo(expected));
                 }
             }
 
@@ -526,7 +526,7 @@ namespace Statiq.Common.Tests.IO
                 IEnumerable<IFile> results = fileSystem.GetFiles(dir, patterns);
 
                 // Then
-                CollectionAssert.AreEquivalent(expected, results.Select(x => x.Path.FullPath));
+                Assert.That(results.Select(x => x.Path.FullPath), Is.EquivalentTo(expected));
             }
         }
 

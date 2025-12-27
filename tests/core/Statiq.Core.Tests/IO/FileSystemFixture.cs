@@ -18,7 +18,7 @@ namespace Statiq.Core.Tests.IO
                 FileSystem fileSystem = new FileSystem();
 
                 // Then
-                CollectionAssert.AreEquivalent(new[] { "input" }, fileSystem.InputPaths.Select(x => x.FullPath));
+                Assert.That(fileSystem.InputPaths.Select(x => x.FullPath), Is.EquivalentTo(new[] { "input" }));
             }
         }
 
@@ -54,7 +54,7 @@ namespace Statiq.Core.Tests.IO
                 fileSystem.RootPath = "/foo/bar";
 
                 // Then
-                Assert.AreEqual("/foo/bar", fileSystem.RootPath.FullPath);
+                Assert.That(fileSystem.RootPath.FullPath, Is.EqualTo("/foo/bar"));
             }
         }
 
@@ -80,7 +80,7 @@ namespace Statiq.Core.Tests.IO
                 fileSystem.OutputPath = "/foo/bar";
 
                 // Then
-                Assert.AreEqual("/foo/bar", fileSystem.OutputPath.FullPath);
+                Assert.That(fileSystem.OutputPath.FullPath, Is.EqualTo("/foo/bar"));
             }
         }
 

@@ -283,7 +283,7 @@ namespace Statiq.Common.Tests.IO
             [TestCase(@"a\b\c", "")]
             [TestCase("foo.txt", "")]
             [TestCase("foo", "")]
-            [WindowsTestCase(@"c:\a\b\c", "c:/")]
+            [WindowsTestCase(@"c:\\a\\b\\c", "c:/")]
             [WindowsTestCase("c:/a/b/c", "c:/")]
             public void ShouldReturnRootPath(string fullPath, string expected)
             {
@@ -303,7 +303,7 @@ namespace Statiq.Common.Tests.IO
             [TestCase(@"a\b\c")]
             [TestCase("foo.txt")]
             [TestCase("foo")]
-            [WindowsTestCase(@"c:\a\b\c")]
+            [WindowsTestCase(@"c:\\a\\b\\c")]
             [WindowsTestCase("c:/a/b/c")]
             public void ShouldReturnEmptyRootForExplicitRelativePath(string fullPath)
             {
@@ -591,7 +591,7 @@ namespace Statiq.Common.Tests.IO
                 NormalizedPath path = new NormalizedPath(fullPath);
 
                 // Then
-                Assert.AreEqual(expected, path.HasExtension);
+                Assert.That(path.HasExtension, Is.EqualTo(expected));
             }
         }
 
@@ -610,7 +610,7 @@ namespace Statiq.Common.Tests.IO
                 string extension = result.Extension;
 
                 // Then
-                Assert.AreEqual(expected, extension);
+                Assert.That(extension, Is.EqualTo(expected));
             }
         }
 
@@ -626,7 +626,7 @@ namespace Statiq.Common.Tests.IO
                 NormalizedPath directory = path.Parent;
 
                 // Then
-                Assert.AreEqual("temp", directory.FullPath);
+                Assert.That(directory.FullPath, Is.EqualTo("temp"));
             }
 
             [Test]
@@ -651,7 +651,7 @@ namespace Statiq.Common.Tests.IO
             [TestCase(@"a\b\c", "a/b/c")]
             [TestCase("foo.txt", "foo.txt")]
             [TestCase("foo", "foo")]
-            [WindowsTestCase(@"c:\a\b\c", "a/b/c")]
+            [WindowsTestCase(@"c:\\a\\b\\c", "a/b/c")]
             [WindowsTestCase("c:/a/b/c", "a/b/c")]
             public void ShouldReturnRootRelativePath(string fullPath, string expected)
             {
@@ -662,7 +662,7 @@ namespace Statiq.Common.Tests.IO
                 NormalizedPath rootRelative = path.RootRelative;
 
                 // Then
-                Assert.AreEqual(expected, rootRelative.FullPath);
+                Assert.That(rootRelative.FullPath, Is.EqualTo(expected));
             }
 
             [TestCase(@"\a\b\c")]
@@ -682,7 +682,7 @@ namespace Statiq.Common.Tests.IO
                 NormalizedPath rootRelative = path.RootRelative;
 
                 // Then
-                Assert.AreEqual(path.FullPath, rootRelative.FullPath);
+                Assert.That(rootRelative.FullPath, Is.EqualTo(path.FullPath));
             }
         }
 
@@ -711,7 +711,7 @@ namespace Statiq.Common.Tests.IO
                 normalized = normalized.ChangeExtension(extension);
 
                 // Then
-                Assert.AreEqual(expected, normalized.ToString());
+                Assert.That(normalized.ToString(), Is.EqualTo(expected));
             }
 
             [TestCase("foo")]
@@ -741,7 +741,7 @@ namespace Statiq.Common.Tests.IO
                 TestDelegate test = () => path.AppendExtension(null);
 
                 // Then
-                Assert.Throws<ArgumentNullException>(test);
+                Assert.That(test, Throws.TypeOf<ArgumentNullException>());
             }
 
             [TestCase("dat", "temp/hello.txt.dat")]
@@ -755,7 +755,7 @@ namespace Statiq.Common.Tests.IO
                 path = path.AppendExtension(extension);
 
                 // Then
-                Assert.AreEqual(expected, path.ToString());
+                Assert.That(path.ToString(), Is.EqualTo(expected));
             }
         }
 
@@ -771,7 +771,7 @@ namespace Statiq.Common.Tests.IO
                 TestDelegate test = () => path.InsertSuffix(null);
 
                 // Then
-                Assert.Throws<ArgumentNullException>(test);
+                Assert.That(test, Throws.TypeOf<ArgumentNullException>());
             }
 
             [TestCase("temp/hello.txt", "123", "temp/hello123.txt")]
@@ -787,7 +787,7 @@ namespace Statiq.Common.Tests.IO
                 filePath = filePath.InsertSuffix(suffix);
 
                 // Then
-                Assert.AreEqual(expected, filePath.FullPath);
+                Assert.That(filePath.FullPath, Is.EqualTo(expected));
             }
         }
 
@@ -803,7 +803,7 @@ namespace Statiq.Common.Tests.IO
                 TestDelegate test = () => path.InsertPrefix(null);
 
                 // Then
-                Assert.Throws<ArgumentNullException>(test);
+                Assert.That(test, Throws.TypeOf<ArgumentNullException>());
             }
 
             [TestCase("temp/hello.txt", "123", "temp/123hello.txt")]
@@ -820,7 +820,7 @@ namespace Statiq.Common.Tests.IO
                 filePath = filePath.InsertPrefix(prefix);
 
                 // Then
-                Assert.AreEqual(expected, filePath.FullPath);
+                Assert.That(filePath.FullPath, Is.EqualTo(expected));
             }
         }
 
@@ -985,7 +985,7 @@ namespace Statiq.Common.Tests.IO
                 string result = path.Name;
 
                 // Then
-                Assert.AreEqual(name, result);
+                Assert.That(result, Is.EqualTo(name));
             }
         }
 
@@ -1006,7 +1006,7 @@ namespace Statiq.Common.Tests.IO
                 NormalizedPath parent = path.Parent;
 
                 // Then
-                Assert.AreEqual(expected, parent.FullPath);
+                Assert.That(parent.FullPath, Is.EqualTo(expected));
             }
 
             [TestCase(".")]
@@ -1051,7 +1051,7 @@ namespace Statiq.Common.Tests.IO
                 TestDelegate test = () => path.GetFilePath(null);
 
                 // Then
-                Assert.Throws<ArgumentNullException>(test);
+                Assert.That(test, Throws.TypeOf<ArgumentNullException>());
             }
 
             [WindowsTestCase("c:/assets/shaders/", "simple.frag", "c:/assets/shaders/simple.frag")]
@@ -1078,7 +1078,7 @@ namespace Statiq.Common.Tests.IO
                 NormalizedPath result = path.GetFilePath(new NormalizedPath(second));
 
                 // Then
-                Assert.AreEqual(expected, result.FullPath);
+                Assert.That(result.FullPath, Is.EqualTo(expected));
             }
         }
 
@@ -1094,7 +1094,7 @@ namespace Statiq.Common.Tests.IO
                 TestDelegate test = () => path.Combine(null);
 
                 // Then
-                Assert.Throws<ArgumentNullException>(test);
+                Assert.That(test, Throws.TypeOf<ArgumentNullException>());
             }
 
             [WindowsTestCase("c:/assets/shaders/", "simple.frag", "c:/assets/shaders/simple.frag")]
@@ -1121,7 +1121,7 @@ namespace Statiq.Common.Tests.IO
                 NormalizedPath result = path.Combine(new NormalizedPath(second));
 
                 // Then
-                Assert.AreEqual(expected, result.FullPath);
+                Assert.That(result.FullPath, Is.EqualTo(expected));
             }
         }
 
@@ -1187,7 +1187,7 @@ namespace Statiq.Common.Tests.IO
                 TestDelegate test = () => path.Combine(null);
 
                 // Then
-                Assert.Throws<ArgumentNullException>(test);
+                Assert.That(test, Throws.TypeOf<ArgumentNullException>());
             }
         }
 

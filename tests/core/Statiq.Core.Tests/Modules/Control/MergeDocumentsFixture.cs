@@ -35,7 +35,7 @@ namespace Statiq.Core.Tests.Modules.Control
                     new SetMetadata("Content", Config.FromDocument(async doc => await doc.GetContentStringAsync())));
 
                 // Then
-                CollectionAssert.AreEqual(new[] { "1121" }, results.Select(x => x["Content"]));
+                Assert.That(results.Select(x => x["Content"]), Is.EqualTo(new[] { "1121" }));
             }
 
             [Test]
@@ -60,7 +60,7 @@ namespace Statiq.Core.Tests.Modules.Control
                     new SetMetadata("Content", Config.FromDocument(async doc => await doc.GetContentStringAsync())));
 
                 // Then
-                CollectionAssert.AreEqual(new[] { "11" }, results.Select(x => x["Content"]));
+                Assert.That(results.Select(x => x["Content"]), Is.EqualTo(new[] { "11" }));
             }
 
             [Test]
@@ -82,8 +82,8 @@ namespace Statiq.Core.Tests.Modules.Control
                 IReadOnlyList<IDocument> results = await ExecuteAsync(a, new MergeDocuments(b));
 
                 // Then
-                CollectionAssert.AreEqual(new[] { 11 }, results.Select(x => x["A"]));
-                CollectionAssert.AreEqual(new[] { 21 }, results.Select(x => x["B"]));
+                Assert.That(results.Select(x => x["A"]), Is.EqualTo(new[] { 11 }));
+                Assert.That(results.Select(x => x["B"]), Is.EqualTo(new[] { 21 }));
             }
 
             [Test]
@@ -105,7 +105,7 @@ namespace Statiq.Core.Tests.Modules.Control
                 IReadOnlyList<IDocument> results = await ExecuteAsync(a, new MergeDocuments(b));
 
                 // Then
-                CollectionAssert.AreEqual(new[] { 21 }, results.Select(x => x["A"]));
+                Assert.That(results.Select(x => x["A"]), Is.EqualTo(new[] { 21 }));
             }
 
             [Test]
@@ -127,10 +127,10 @@ namespace Statiq.Core.Tests.Modules.Control
                 IReadOnlyList<IDocument> results = await ExecuteAsync(a, new MergeDocuments(b));
 
                 // Then
-                Assert.AreEqual(1, a.OutputCount);
-                Assert.AreEqual(1, b.OutputCount);
-                CollectionAssert.AreEqual(new[] { 11 }, results.Select(x => x["A"]));
-                CollectionAssert.AreEqual(new[] { 21 }, results.Select(x => x["B"]));
+                Assert.That(a.OutputCount, Is.EqualTo(1));
+                Assert.That(b.OutputCount, Is.EqualTo(1));
+                Assert.That(results.Select(x => x["A"]), Is.EqualTo(new[] { 11 }));
+                Assert.That(results.Select(x => x["B"]), Is.EqualTo(new[] { 21 }));
             }
 
             [Test]
@@ -153,10 +153,10 @@ namespace Statiq.Core.Tests.Modules.Control
                 IReadOnlyList<IDocument> results = await ExecuteAsync(a, new MergeDocuments(b));
 
                 // Then
-                Assert.AreEqual(1, a.OutputCount);
-                Assert.AreEqual(2, b.OutputCount);
-                CollectionAssert.AreEqual(new[] { 11, 11 }, results.Select(x => x["A"]));
-                CollectionAssert.AreEqual(new[] { 21, 22 }, results.Select(x => x["B"]));
+                Assert.That(a.OutputCount, Is.EqualTo(1));
+                Assert.That(b.OutputCount, Is.EqualTo(2));
+                Assert.That(results.Select(x => x["A"]), Is.EqualTo(new[] { 11, 11 }));
+                Assert.That(results.Select(x => x["B"]), Is.EqualTo(new[] { 21, 22 }));
             }
 
             [Test]
@@ -236,15 +236,15 @@ namespace Statiq.Core.Tests.Modules.Control
                 IReadOnlyList<IDocument> results = await ExecuteAsync(a, new MergeDocuments(b), c);
 
                 // Then
-                Assert.AreEqual(1, a.ExecuteCount);
-                Assert.AreEqual(1, b.ExecuteCount);
-                Assert.AreEqual(1, c.ExecuteCount);
-                Assert.AreEqual(1, a.InputCount);
-                Assert.AreEqual(2, b.InputCount);
-                Assert.AreEqual(12, c.InputCount);
-                Assert.AreEqual(2, a.OutputCount);
-                Assert.AreEqual(6, b.OutputCount);
-                Assert.AreEqual(48, c.OutputCount);
+                Assert.That(a.ExecuteCount, Is.EqualTo(1));
+                Assert.That(b.ExecuteCount, Is.EqualTo(1));
+                Assert.That(c.ExecuteCount, Is.EqualTo(1));
+                Assert.That(a.InputCount, Is.EqualTo(1));
+                Assert.That(b.InputCount, Is.EqualTo(2));
+                Assert.That(c.InputCount, Is.EqualTo(12));
+                Assert.That(a.OutputCount, Is.EqualTo(2));
+                Assert.That(b.OutputCount, Is.EqualTo(6));
+                Assert.That(c.OutputCount, Is.EqualTo(48));
                 results.Count.ShouldBe(48);
             }
         }

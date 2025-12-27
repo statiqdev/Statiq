@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using NUnit.Framework;
-using Shouldly;
+﻿using NUnit.Framework;
 using Statiq.Testing;
 
 namespace Statiq.Common.Tests.Documents
@@ -19,7 +17,7 @@ namespace Statiq.Common.Tests.Documents
                 IDocument b = new ObjectDocument<CustomObject>(obj);
 
                 // Then
-                Assert.AreNotEqual(a.Id, b.Id);
+                Assert.That(a.Id, Is.Not.EqualTo(b.Id));
             }
         }
 
@@ -36,7 +34,7 @@ namespace Statiq.Common.Tests.Documents
                 IDocument cloned = document.Clone(null);
 
                 // Then
-                Assert.AreEqual(document.Id, cloned.Id);
+                Assert.That(cloned.Id, Is.EqualTo(document.Id));
             }
 
             [Test]
@@ -50,7 +48,7 @@ namespace Statiq.Common.Tests.Documents
                 IDocument cloned = document.Clone(null);
 
                 // Then
-                cloned.ShouldBeOfType<ObjectDocument<CustomObject>>();
+                Assert.That(cloned, Is.TypeOf<ObjectDocument<CustomObject>>());
             }
 
             [Test]
@@ -67,7 +65,7 @@ namespace Statiq.Common.Tests.Documents
                 IDocument cloned = document.Clone(null);
 
                 // Then
-                ((ObjectDocument<CustomObject>)cloned).Object.Foo.ShouldBe("abc");
+                Assert.That(((ObjectDocument<CustomObject>)cloned).Object.Foo, Is.EqualTo("abc"));
             }
         }
 
@@ -90,7 +88,7 @@ namespace Statiq.Common.Tests.Documents
                 IDocument document = new ObjectDocument<CustomObject>(obj, new Metadata(settings));
 
                 // Then
-                document.Keys.ShouldBe(new[] { "Foo", "A" }, true);
+                Assert.That(document.Keys, Is.EquivalentTo(new[] { "Foo", "A" }));
             }
 
             [Test]
@@ -113,8 +111,8 @@ namespace Statiq.Common.Tests.Documents
                 string clonedValue = cloned.GetString("A");
 
                 // Then
-                initialValue.ShouldBe("a");
-                clonedValue.ShouldBe("b");
+                Assert.That(initialValue, Is.EqualTo("a"));
+                Assert.That(clonedValue, Is.EqualTo("b"));
             }
 
             [Test]
@@ -133,8 +131,8 @@ namespace Statiq.Common.Tests.Documents
                 string clonedValue = cloned.GetString("Foo");
 
                 // Then
-                initialValue.ShouldBe("abc");
-                clonedValue.ShouldBe("xyz");
+                Assert.That(initialValue, Is.EqualTo("abc"));
+                Assert.That(clonedValue, Is.EqualTo("xyz"));
             }
         }
 
@@ -160,7 +158,7 @@ namespace Statiq.Common.Tests.Documents
                 int count = document.Count;
 
                 // Then
-                count.ShouldBe(4);
+                Assert.That(count, Is.EqualTo(4));
             }
 
             [Test]
@@ -184,7 +182,7 @@ namespace Statiq.Common.Tests.Documents
                 int count = document.Count;
 
                 // Then
-                count.ShouldBe(4);
+                Assert.That(count, Is.EqualTo(4));
             }
         }
 

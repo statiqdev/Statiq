@@ -159,10 +159,10 @@ namespace Statiq.Common.Tests.Modules
                 collection.InsertAfterFirst<RedModule>(new CountModule("foo"));
 
                 // Then
-                Assert.AreEqual(collection[0].GetType(), typeof(RedModule));
-                Assert.AreEqual(collection[1].GetType(), typeof(CountModule));
-                Assert.AreEqual(collection[2].GetType(), typeof(RedModule));
-                Assert.AreEqual(collection[3].GetType(), typeof(GreenModule));
+                Assert.That(collection[0].GetType(), Is.EqualTo(typeof(RedModule)));
+                Assert.That(collection[1].GetType(), Is.EqualTo(typeof(CountModule)));
+                Assert.That(collection[2].GetType(), Is.EqualTo(typeof(RedModule)));
+                Assert.That(collection[3].GetType(), Is.EqualTo(typeof(GreenModule)));
             }
         }
 
@@ -181,10 +181,10 @@ namespace Statiq.Common.Tests.Modules
                 collection.InsertBeforeFirst<RedModule>(new CountModule("foo"));
 
                 // Then
-                Assert.AreEqual(collection[0].GetType(), typeof(CountModule));
-                Assert.AreEqual(collection[1].GetType(), typeof(RedModule));
-                Assert.AreEqual(collection[2].GetType(), typeof(RedModule));
-                Assert.AreEqual(collection[3].GetType(), typeof(GreenModule));
+                Assert.That(collection[0].GetType(), Is.EqualTo(typeof(CountModule)));
+                Assert.That(collection[1].GetType(), Is.EqualTo(typeof(RedModule)));
+                Assert.That(collection[2].GetType(), Is.EqualTo(typeof(RedModule)));
+                Assert.That(collection[3].GetType(), Is.EqualTo(typeof(GreenModule)));
             }
         }
 
@@ -203,10 +203,10 @@ namespace Statiq.Common.Tests.Modules
                 collection.InsertAfterLast<RedModule>(new CountModule("foo"));
 
                 // Then
-                Assert.AreEqual(collection[0].GetType(), typeof(RedModule));
-                Assert.AreEqual(collection[1].GetType(), typeof(RedModule));
-                Assert.AreEqual(collection[2].GetType(), typeof(CountModule));
-                Assert.AreEqual(collection[3].GetType(), typeof(GreenModule));
+                Assert.That(collection[0].GetType(), Is.EqualTo(typeof(RedModule)));
+                Assert.That(collection[1].GetType(), Is.EqualTo(typeof(RedModule)));
+                Assert.That(collection[2].GetType(), Is.EqualTo(typeof(CountModule)));
+                Assert.That(collection[3].GetType(), Is.EqualTo(typeof(GreenModule)));
             }
         }
 
@@ -225,10 +225,10 @@ namespace Statiq.Common.Tests.Modules
                 collection.InsertBeforeLast<RedModule>(new CountModule("foo"));
 
                 // Then
-                Assert.AreEqual(collection[0].GetType(), typeof(RedModule));
-                Assert.AreEqual(collection[1].GetType(), typeof(CountModule));
-                Assert.AreEqual(collection[2].GetType(), typeof(RedModule));
-                Assert.AreEqual(collection[3].GetType(), typeof(GreenModule));
+                Assert.That(collection[0].GetType(), Is.EqualTo(typeof(RedModule)));
+                Assert.That(collection[1].GetType(), Is.EqualTo(typeof(CountModule)));
+                Assert.That(collection[2].GetType(), Is.EqualTo(typeof(RedModule)));
+                Assert.That(collection[3].GetType(), Is.EqualTo(typeof(GreenModule)));
             }
         }
 
@@ -248,8 +248,8 @@ namespace Statiq.Common.Tests.Modules
                 collection.ReplaceFirst<CountModule>(new CountModule("replacedKey"));
 
                 // Then
-                Assert.AreEqual("replacedKey", ((CountModule)collection[1]).ValueKey);
-                Assert.AreEqual("mykey2", ((CountModule)collection[2]).ValueKey);
+                Assert.That(((CountModule)collection[1]).ValueKey, Is.EqualTo("replacedKey"));
+                Assert.That(((CountModule)collection[2]).ValueKey, Is.EqualTo("mykey2"));
             }
         }
 
@@ -269,8 +269,8 @@ namespace Statiq.Common.Tests.Modules
                 collection.ReplaceLast<CountModule>(new CountModule("replacedKey"));
 
                 // Then
-                Assert.AreEqual("mykey1", ((CountModule)collection[1]).ValueKey);
-                Assert.AreEqual("replacedKey", ((CountModule)collection[2]).ValueKey);
+                Assert.That(((CountModule)collection[1]).ValueKey, Is.EqualTo("mykey1"));
+                Assert.That(((CountModule)collection[2]).ValueKey, Is.EqualTo("replacedKey"));
             }
         }
 

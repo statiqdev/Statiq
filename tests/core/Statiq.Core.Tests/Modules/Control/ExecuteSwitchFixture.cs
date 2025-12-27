@@ -24,10 +24,10 @@ namespace Statiq.Core.Tests.Modules.Control
                 await ExecuteAsync(a, switchModule);
 
                 // Then
-                Assert.AreEqual(1, a.ExecuteCount);
-                Assert.AreEqual(1, b.ExecuteCount);
-                Assert.AreEqual(1, c.ExecuteCount);
-                Assert.AreEqual(1, d.ExecuteCount);
+                Assert.That(a.ExecuteCount, Is.EqualTo(1));
+                Assert.That(b.ExecuteCount, Is.EqualTo(1));
+                Assert.That(c.ExecuteCount, Is.EqualTo(1));
+                Assert.That(d.ExecuteCount, Is.EqualTo(1));
             }
 
             [Test]
@@ -47,11 +47,11 @@ namespace Statiq.Core.Tests.Modules.Control
                 await ExecuteAsync(a, switchModule, c);
 
                 // Then
-                Assert.AreEqual(1, a.ExecuteCount);
-                Assert.AreEqual(1, b.ExecuteCount);
-                Assert.AreEqual(3, b.InputCount);
-                Assert.AreEqual(3, b.OutputCount);
-                Assert.AreEqual(3, c.InputCount);
+                Assert.That(a.ExecuteCount, Is.EqualTo(1));
+                Assert.That(b.ExecuteCount, Is.EqualTo(1));
+                Assert.That(b.InputCount, Is.EqualTo(3));
+                Assert.That(b.OutputCount, Is.EqualTo(3));
+                Assert.That(c.InputCount, Is.EqualTo(3));
             }
 
             [Test]
@@ -71,11 +71,11 @@ namespace Statiq.Core.Tests.Modules.Control
                 await ExecuteAsync(a, switchModule, c);
 
                 // Then
-                Assert.AreEqual(1, a.ExecuteCount);
-                Assert.AreEqual(1, b.ExecuteCount);
-                Assert.AreEqual(1, b.InputCount);
-                Assert.AreEqual(1, b.OutputCount);
-                Assert.AreEqual(3, c.InputCount);
+                Assert.That(a.ExecuteCount, Is.EqualTo(1));
+                Assert.That(b.ExecuteCount, Is.EqualTo(1));
+                Assert.That(b.InputCount, Is.EqualTo(1));
+                Assert.That(b.OutputCount, Is.EqualTo(1));
+                Assert.That(c.InputCount, Is.EqualTo(3));
             }
 
             [Test]
@@ -95,11 +95,11 @@ namespace Statiq.Core.Tests.Modules.Control
                 await ExecuteAsync(a, switchModule, c);
 
                 // Then
-                Assert.AreEqual(1, a.ExecuteCount);
-                Assert.AreEqual(1, b.ExecuteCount);
-                Assert.AreEqual(2, b.InputCount);
-                Assert.AreEqual(2, b.OutputCount);
-                Assert.AreEqual(3, c.InputCount);
+                Assert.That(a.ExecuteCount, Is.EqualTo(1));
+                Assert.That(b.ExecuteCount, Is.EqualTo(1));
+                Assert.That(b.InputCount, Is.EqualTo(2));
+                Assert.That(b.OutputCount, Is.EqualTo(2));
+                Assert.That(c.InputCount, Is.EqualTo(3));
             }
 
             [Test]
@@ -118,7 +118,7 @@ namespace Statiq.Core.Tests.Modules.Control
                 await ExecuteAsync(a, switchModule, b);
 
                 // Then
-                Assert.AreEqual(3, b.InputCount);
+                Assert.That(b.InputCount, Is.EqualTo(3));
             }
         }
     }

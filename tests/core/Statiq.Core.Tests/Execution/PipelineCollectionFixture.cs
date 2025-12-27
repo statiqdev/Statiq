@@ -56,7 +56,7 @@ namespace Statiq.Core.Tests.Execution
                 bool contains = pipelines.ContainsKey("test");
 
                 // Then
-                Assert.IsTrue(contains);
+                Assert.That(contains, Is.True);
             }
         }
     }

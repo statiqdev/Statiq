@@ -49,7 +49,7 @@ namespace Statiq.Common.Tests.IO
                 PathCollection collection = new PathCollection(new[] { _upperCaseA, _upperCaseB });
 
                 // When, Then
-                Assert.AreEqual(2, collection.Count);
+                Assert.That(collection.Count, Is.EqualTo(2));
             }
         }
 
@@ -66,7 +66,7 @@ namespace Statiq.Common.Tests.IO
                 collection.Add(_upperCaseA);
 
                 // Then
-                Assert.AreEqual(2, collection.Count);
+                Assert.That(collection.Count, Is.EqualTo(2));
             }
         }
 
@@ -83,7 +83,7 @@ namespace Statiq.Common.Tests.IO
                 collection.AddRange(new[] { _upperCaseA, _upperCaseB, _upperCaseC });
 
                 // Then
-                Assert.AreEqual(3, collection.Count);
+                Assert.That(collection.Count, Is.EqualTo(3));
             }
         }
     }

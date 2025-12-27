@@ -36,8 +36,8 @@ namespace Statiq.Core.Tests.Modules.Control
                 IReadOnlyList<TestDocument> documents = await ExecuteAsync(inputs, context, sidecar);
 
                 // Then
-                Assert.AreEqual("data: a1", lodedSidecarContent);
-                Assert.AreEqual("File a1", documents.Single().Content);
+                Assert.That(lodedSidecarContent, Is.EqualTo("data: a1"));
+                Assert.That(documents.Single().Content, Is.EqualTo("File a1"));
             }
 
             [Test]
@@ -63,8 +63,8 @@ namespace Statiq.Core.Tests.Modules.Control
                 IReadOnlyList<TestDocument> documents = await ExecuteAsync(inputs, context, sidecar);
 
                 // Then
-                Assert.AreEqual("data: other", lodedSidecarContent);
-                Assert.AreEqual("File a1", documents.Single().Content);
+                Assert.That(lodedSidecarContent, Is.EqualTo("data: other"));
+                Assert.That(documents.Single().Content, Is.EqualTo("File a1"));
             }
 
             [Test]
@@ -90,8 +90,8 @@ namespace Statiq.Core.Tests.Modules.Control
                 IReadOnlyList<TestDocument> documents = await ExecuteAsync(inputs, context, sidecar);
 
                 // Then
-                Assert.IsFalse(executedSidecarModules);
-                Assert.AreEqual(inputs.First(), documents.First());
+                Assert.That(executedSidecarModules, Is.False);
+                Assert.That(documents.First(), Is.EqualTo(inputs.First()));
             }
 
             private TestDocument GetDocument(string source, string content) =>

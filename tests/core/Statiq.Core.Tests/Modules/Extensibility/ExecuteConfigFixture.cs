@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using Shouldly;
@@ -40,7 +39,7 @@ namespace Statiq.Core.Tests.Modules.Extensibility
                 IReadOnlyList<TestDocument> outputs = await ExecuteAsync(inputs, execute);
 
                 // Then
-                CollectionAssert.AreEqual(inputs, outputs);
+                Assert.That(inputs, Is.EqualTo(outputs));
             }
 
             [Test]
@@ -156,7 +155,7 @@ namespace Statiq.Core.Tests.Modules.Extensibility
                 IReadOnlyList<TestDocument> outputs = await ExecuteAsync(inputs, execute);
 
                 // Then
-                CollectionAssert.AreEqual(inputs, outputs);
+                Assert.That(inputs, Is.EqualTo(outputs));
             }
 
             [Test]
@@ -174,7 +173,7 @@ namespace Statiq.Core.Tests.Modules.Extensibility
                 IReadOnlyList<TestDocument> result = await ExecuteAsync(count, execute);
 
                 // Then
-                CollectionAssert.AreEquivalent(document, result.Single());
+                Assert.That(document, Is.EquivalentTo(result.Single()));
             }
 
             [Test]

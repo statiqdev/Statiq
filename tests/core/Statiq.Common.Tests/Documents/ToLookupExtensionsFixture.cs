@@ -36,11 +36,11 @@ namespace Statiq.Common.Tests.Documents
                 ILookup<int, IDocument> lookup = documents.ToLookupMany<int>("Numbers");
 
                 // Then
-                Assert.AreEqual(4, lookup.Count);
-                CollectionAssert.AreEquivalent(new[] { a }, lookup[1]);
-                CollectionAssert.AreEquivalent(new[] { a, b }, lookup[2]);
-                CollectionAssert.AreEquivalent(new[] { a, b, c }, lookup[3]);
-                CollectionAssert.AreEquivalent(new[] { b, d }, lookup[4]);
+                Assert.That(lookup.Count, Is.EqualTo(4));
+                Assert.That(lookup[1], Is.EquivalentTo(new[] { a }));
+                Assert.That(lookup[2], Is.EquivalentTo(new[] { a, b }));
+                Assert.That(lookup[3], Is.EquivalentTo(new[] { a, b, c }));
+                Assert.That(lookup[4], Is.EquivalentTo(new[] { b, d }));
             }
 
             [Test]
@@ -69,11 +69,11 @@ namespace Statiq.Common.Tests.Documents
                 ILookup<string, IDocument> lookup = documents.ToLookupMany<string>("Numbers");
 
                 // Then
-                Assert.AreEqual(4, lookup.Count);
-                CollectionAssert.AreEquivalent(new[] { a }, lookup["1"]);
-                CollectionAssert.AreEquivalent(new[] { a, b }, lookup["2"]);
-                CollectionAssert.AreEquivalent(new[] { a, b, c }, lookup["3"]);
-                CollectionAssert.AreEquivalent(new[] { b, d }, lookup["4"]);
+                Assert.That(lookup.Count, Is.EqualTo(4));
+                Assert.That(lookup["1"], Is.EquivalentTo(new[] { a }));
+                Assert.That(lookup["2"], Is.EquivalentTo(new[] { a, b }));
+                Assert.That(lookup["3"], Is.EquivalentTo(new[] { a, b, c }));
+                Assert.That(lookup["4"], Is.EquivalentTo(new[] { b, d }));
             }
 
             [Test]
@@ -106,11 +106,11 @@ namespace Statiq.Common.Tests.Documents
                 ILookup<int, string> lookup = documents.ToLookupMany<int, string>("Numbers", "Colors");
 
                 // Then
-                Assert.AreEqual(4, lookup.Count);
-                CollectionAssert.AreEquivalent(new[] { "Red" }, lookup[1]);
-                CollectionAssert.AreEquivalent(new[] { "Red", "Red" }, lookup[2]);
-                CollectionAssert.AreEquivalent(new[] { "Red", "Red", "Green" }, lookup[3]);
-                CollectionAssert.AreEquivalent(new[] { "Red", "Green" }, lookup[4]);
+                Assert.That(lookup.Count, Is.EqualTo(4));
+                Assert.That(lookup[1], Is.EquivalentTo(new[] { "Red" }));
+                Assert.That(lookup[2], Is.EquivalentTo(new[] { "Red", "Red" }));
+                Assert.That(lookup[3], Is.EquivalentTo(new[] { "Red", "Red", "Green" }));
+                Assert.That(lookup[4], Is.EquivalentTo(new[] { "Red", "Green" }));
             }
         }
 
@@ -146,11 +146,11 @@ namespace Statiq.Common.Tests.Documents
                 ILookup<int, string> lookup = documents.ToLookupManyToMany<int, string>("Numbers", "Colors");
 
                 // Then
-                Assert.AreEqual(4, lookup.Count);
-                CollectionAssert.AreEquivalent(new[] { "Red" }, lookup[1]);
-                CollectionAssert.AreEquivalent(new[] { "Red", "Red", "Blue" }, lookup[2]);
-                CollectionAssert.AreEquivalent(new[] { "Red", "Red", "Blue", "Green" }, lookup[3]);
-                CollectionAssert.AreEquivalent(new[] { "Red", "Blue", "Green", "Blue" }, lookup[4]);
+                Assert.That(lookup.Count, Is.EqualTo(4));
+                Assert.That(lookup[1], Is.EquivalentTo(new[] { "Red" }));
+                Assert.That(lookup[2], Is.EquivalentTo(new[] { "Red", "Red", "Blue" }));
+                Assert.That(lookup[3], Is.EquivalentTo(new[] { "Red", "Red", "Blue", "Green" }));
+                Assert.That(lookup[4], Is.EquivalentTo(new[] { "Red", "Blue", "Green", "Blue" }));
             }
         }
     }

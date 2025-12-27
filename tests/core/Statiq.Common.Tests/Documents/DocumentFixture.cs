@@ -19,7 +19,7 @@ namespace Statiq.Common.Tests.Documents
                 Document b = new Document();
 
                 // Then
-                Assert.AreNotEqual(a.Id, b.Id);
+                Assert.That(a.Id, Is.Not.EqualTo(b.Id));
             }
 
             [Test]
@@ -48,7 +48,7 @@ namespace Statiq.Common.Tests.Documents
                 IDocument cloned = document.Clone(null);
 
                 // Then
-                Assert.AreEqual(document.Id, cloned.Id);
+                Assert.That(cloned.Id, Is.EqualTo(document.Id));
             }
 
             [Test]

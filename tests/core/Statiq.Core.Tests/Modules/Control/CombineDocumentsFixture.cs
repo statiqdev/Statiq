@@ -26,12 +26,11 @@ namespace Statiq.Core.Tests.Modules.Control
                 IReadOnlyList<IDocument> results = await ExecuteAsync(new[] { a, b }, combine);
 
                 // Then
-                CollectionAssert.AreEqual(
-                    new[] { "ab" },
+                Assert.That(
                     await results
                         .ToAsyncEnumerable()
                         .SelectAwait(async x => await x.GetContentStringAsync())
-                        .ToListAsync());
+                        .ToListAsync(), Is.EqualTo(new[] { "ab" }));
             }
 
             [Test]

@@ -27,7 +27,7 @@ namespace Statiq.Common.Tests.Util
                 RelativeUrl relativeUrl = new RelativeUrl(url);
 
                 // Then
-                Assert.AreEqual(expected, relativeUrl.HasRoot);
+                Assert.That(relativeUrl.HasRoot, Is.EqualTo(expected));
             }
 
             [TestCase(null, "")]
@@ -55,7 +55,7 @@ namespace Statiq.Common.Tests.Util
                 RelativeUrl relativeUrl = new RelativeUrl(url);
 
                 // Then
-                Assert.AreEqual(expected, relativeUrl.Fragment);
+                Assert.That(relativeUrl.Fragment, Is.EqualTo(expected));
             }
 
             [TestCase(null, "")]
@@ -97,7 +97,7 @@ namespace Statiq.Common.Tests.Util
                 RelativeUrl relativeUrl = new RelativeUrl(url);
 
                 // Then
-                Assert.AreEqual(expected, relativeUrl.Query);
+                Assert.That(relativeUrl.Query, Is.EqualTo(expected));
             }
 
             [TestCase(null, null)]
@@ -135,7 +135,7 @@ namespace Statiq.Common.Tests.Util
                 RelativeUrl relativeUrl = new RelativeUrl(url);
 
                 // Then
-                Assert.AreEqual(expected, (string)relativeUrl.Path);
+                Assert.That((string)relativeUrl.Path, Is.EqualTo(expected));
             }
 
             [TestCase("?", null, "?")]
@@ -155,7 +155,7 @@ namespace Statiq.Common.Tests.Util
                 RelativeUrl relativeUrl = new RelativeUrl(url, root);
 
                 // Then
-                Assert.AreEqual(expected, relativeUrl.ToString());
+                Assert.That(relativeUrl.ToString(), Is.EqualTo(expected));
             }
 
             [Test]
@@ -165,7 +165,7 @@ namespace Statiq.Common.Tests.Util
                 RelativeUrl relativeUrl = new RelativeUrl("~/foo?a=b#fragment", "root");
 
                 // Then
-                Assert.AreEqual(relativeUrl.ToString(), (string)relativeUrl);
+                Assert.That((string)relativeUrl, Is.EqualTo(relativeUrl.ToString()));
             }
         }
     }

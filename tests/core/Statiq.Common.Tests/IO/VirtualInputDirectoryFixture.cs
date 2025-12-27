@@ -18,21 +18,21 @@ namespace Statiq.Common.Tests.IO
             public void ThrowsForNullFileSystem()
             {
                 // Given, When, Then
-                Assert.Throws<ArgumentNullException>(() => new VirtualInputDirectory(null, new NormalizedPath("A")));
+                Assert.That(() => new VirtualInputDirectory(null, new NormalizedPath("A")), Throws.TypeOf<ArgumentNullException>());
             }
 
             [Test]
             public void ThrowsForNullDirectoryPath()
             {
                 // Given, When, Then
-                Assert.Throws<ArgumentNullException>(() => new VirtualInputDirectory(new TestFileSystem(), null));
+                Assert.That(() => new VirtualInputDirectory(new TestFileSystem(), null), Throws.TypeOf<ArgumentNullException>());
             }
 
             [Test]
             public void ThrowsForNonRelativePath()
             {
                 // Given, When, Then
-                Assert.Throws<ArgumentException>(() => new VirtualInputDirectory(new TestFileSystem(), new NormalizedPath("/A")));
+                Assert.That(() => new VirtualInputDirectory(new TestFileSystem(), new NormalizedPath("/A")), Throws.TypeOf<ArgumentException>());
             }
         }
 
@@ -49,7 +49,7 @@ namespace Statiq.Common.Tests.IO
                 IEnumerable<IDirectory> directories = directory.GetDirectories(searchOption);
 
                 // Then
-                CollectionAssert.AreEquivalent(expectedPaths, directories.Select(x => x.Path.FullPath));
+                Assert.That(directories.Select(x => x.Path.FullPath), Is.EquivalentTo(expectedPaths));
             }
 
             [TestCase("a", SearchOption.AllDirectories, new[] { "a/b" })]
@@ -63,7 +63,7 @@ namespace Statiq.Common.Tests.IO
                 IEnumerable<IDirectory> directories = directory.GetDirectories(searchOption);
 
                 // Then
-                CollectionAssert.AreEquivalent(expectedPaths, directories.Select(x => x.Path.FullPath));
+                Assert.That(directories.Select(x => x.Path.FullPath), Is.EquivalentTo(expectedPaths));
             }
 
             [TestCase("", SearchOption.TopDirectoryOnly, new[] { "x", "i" })]
@@ -126,7 +126,7 @@ namespace Statiq.Common.Tests.IO
                 IEnumerable<IFile> files = directory.GetFiles(searchOption);
 
                 // Then
-                CollectionAssert.AreEquivalent(expectedPaths, files.Select(x => x.Path.FullPath));
+                Assert.That(files.Select(x => x.Path.FullPath), Is.EquivalentTo(expectedPaths));
             }
 
             [TestCase("", SearchOption.TopDirectoryOnly, new string[] { })]
@@ -173,8 +173,8 @@ namespace Statiq.Common.Tests.IO
                 IFile file = directory.GetFile(filePath);
 
                 // Then
-                Assert.AreEqual(expectedPath, file.Path.FullPath);
-                Assert.AreEqual(expectedExists, file.Exists);
+                Assert.That(file.Path.FullPath, Is.EqualTo(expectedPath));
+                Assert.That(file.Exists, Is.EqualTo(expectedExists));
             }
 
             [TestCase("", "x/y/z/foo.txt", "/root/a/x/y/z/foo.txt", true)]
@@ -203,8 +203,8 @@ namespace Statiq.Common.Tests.IO
                 IFile file = directory.GetFile(filePath);
 
                 // Then
-                Assert.AreEqual(expectedPath, file.Path.FullPath);
-                Assert.AreEqual(expectedExists, file.Exists);
+                Assert.That(file.Path.FullPath, Is.EqualTo(expectedPath));
+                Assert.That(file.Exists, Is.EqualTo(expectedExists));
             }
 
             [Test]
@@ -221,7 +221,7 @@ namespace Statiq.Common.Tests.IO
                 IFile file = directory.GetFile("../c/foo.txt");
 
                 // Then
-                Assert.AreEqual("/a/b/c/foo.txt", file.Path.FullPath);
+                Assert.That(file.Path.FullPath, Is.EqualTo("/a/b/c/foo.txt"));
             }
 
             [Test]
@@ -234,7 +234,7 @@ namespace Statiq.Common.Tests.IO
                 IFile file = directory.GetFile("../../z/fizz.txt");
 
                 // Then
-                Assert.AreEqual("/root/c/z/fizz.txt", file.Path.FullPath);
+                Assert.That(file.Path.FullPath, Is.EqualTo("/root/c/z/fizz.txt"));
             }
 
             [Test]
@@ -293,7 +293,7 @@ namespace Statiq.Common.Tests.IO
                 IDirectory result = directory.GetDirectory(path);
 
                 // Then
-                Assert.AreEqual(expected, result.Path.FullPath);
+                Assert.That(result.Path.FullPath, Is.EqualTo(expected));
             }
 
             [Test]
@@ -333,7 +333,7 @@ namespace Statiq.Common.Tests.IO
                 IDirectory result = directory.Parent;
 
                 // Then
-                Assert.AreEqual(expected, result?.Path.FullPath);
+                Assert.That(result?.Path.FullPath, Is.EqualTo(expected));
             }
         }
 

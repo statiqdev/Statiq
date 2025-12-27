@@ -107,8 +107,8 @@ namespace Statiq.Core.Tests.Modules.Control
                 await ExecuteAsync(count, count2, orderBy, gatherData);
 
                 // Then
-                Assert.AreEqual(10, content.Count); // (4+1) * (21+1)
-                CollectionAssert.AreEqual(new[] { "11", "12", "23", "24", "35", "36", "47", "48", "59", "510" }, content);
+                Assert.That(content.Count, Is.EqualTo(10)); // (4+1) * (21+1)
+                Assert.That(content, Is.EqualTo(new[] { "11", "12", "23", "24", "35", "36", "47", "48", "59", "510" }));
             }
 
             [Test]
@@ -139,8 +139,8 @@ namespace Statiq.Core.Tests.Modules.Control
                 await ExecuteAsync(count, count2, orderBy, gatherData);
 
                 // Then
-                Assert.AreEqual(10, content.Count); // (4+1) * (21+1)
-                CollectionAssert.AreEqual(new[] { "12", "11", "24", "23", "36", "35", "48", "47", "510", "59" }, content);
+                Assert.That(content.Count, Is.EqualTo(10)); // (4+1) * (21+1)
+                Assert.That(content, Is.EqualTo(new[] { "12", "11", "24", "23", "36", "35", "48", "47", "510", "59" }));
             }
 
             [Test]
@@ -172,8 +172,8 @@ namespace Statiq.Core.Tests.Modules.Control
                 await ExecuteAsync(count, count2, orderBy, gatherData);
 
                 // Then
-                Assert.AreEqual(10, content.Count); // (4+1) * (21+1)
-                CollectionAssert.AreEqual(new[] { "510", "59", "48", "47", "36", "35", "24", "23", "12", "11" }, content);
+                Assert.That(content.Count, Is.EqualTo(10)); // (4+1) * (21+1)
+                Assert.That(content, Is.EqualTo(new[] { "510", "59", "48", "47", "36", "35", "24", "23", "12", "11" }));
             }
 
             [Test]
@@ -204,8 +204,8 @@ namespace Statiq.Core.Tests.Modules.Control
                 await ExecuteAsync(count, count2, orderBy, gatherData);
 
                 // Then
-                Assert.AreEqual(10, content.Count); // (4+1) * (21+1)
-                CollectionAssert.AreEqual(new[] { "59", "510", "47", "48", "35", "36", "23", "24", "11", "12" }, content);
+                Assert.That(content.Count, Is.EqualTo(10)); // (4+1) * (21+1)
+                Assert.That(content, Is.EqualTo(new[] { "59", "510", "47", "48", "35", "36", "23", "24", "11", "12" }));
             }
 
             [Test]

@@ -36,8 +36,8 @@ namespace Statiq.Core.Tests.Modules.Control
                 await engine.ExecuteAsync(cancellationTokenSource.Token);
 
                 // Then
-                Assert.AreEqual(4, content.Count);
-                CollectionAssert.AreEquivalent(new[] { "A", "B", "C", "D" }, content);
+                Assert.That(content.Count, Is.EqualTo(4));
+                Assert.That(content, Is.EquivalentTo(new[] { "A", "B", "C", "D" }));
             }
 
             [Test]
@@ -63,8 +63,8 @@ namespace Statiq.Core.Tests.Modules.Control
                 await engine.ExecuteAsync(cancellationTokenSource.Token);
 
                 // Then
-                Assert.AreEqual(6, content.Count);
-                CollectionAssert.AreEquivalent(new[] { "A", "B", "C", "D", "G", "H" }, content);
+                Assert.That(content.Count, Is.EqualTo(6));
+                Assert.That(content, Is.EquivalentTo(new[] { "A", "B", "C", "D", "G", "H" }));
             }
 
             [Test]
@@ -90,8 +90,8 @@ namespace Statiq.Core.Tests.Modules.Control
                 await engine.ExecuteAsync(cancellationTokenSource.Token);
 
                 // Then
-                Assert.AreEqual(6, content.Count);
-                CollectionAssert.AreEquivalent(new[] { "G", "H", "A", "B", "C", "D" }, content);
+                Assert.That(content.Count, Is.EqualTo(6));
+                Assert.That(content, Is.EquivalentTo(new[] { "G", "H", "A", "B", "C", "D" }));
             }
         }
     }
