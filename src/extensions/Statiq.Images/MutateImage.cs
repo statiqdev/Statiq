@@ -331,7 +331,9 @@ namespace Statiq.Images
                 IImageFormat imageFormat;
                 using (Stream stream = input.GetContentStream())
                 {
-                    image = Image.Load<Rgba32>(stream, out imageFormat);
+                    imageFormat = Image.DetectFormat(stream);
+                    stream.Seek(0, SeekOrigin.Begin);
+                    image = Image.Load<Rgba32>(stream);
                 }
 
                 // Mutate the image with the specified operations, if there are any

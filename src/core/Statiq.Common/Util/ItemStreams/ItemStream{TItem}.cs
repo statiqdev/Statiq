@@ -196,8 +196,6 @@ namespace Statiq.Common
 
         public sealed override int WriteTimeout { get => base.WriteTimeout; set => base.WriteTimeout = value; }
 
-        public sealed override object InitializeLifetimeService() => base.InitializeLifetimeService();
-
         public sealed override IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback callback, object state) => base.BeginRead(buffer, offset, count, callback, state);
 
         public sealed override IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback callback, object state) => base.BeginWrite(buffer, offset, count, callback, state);

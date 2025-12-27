@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Spectre.Console.Cli;
 using Spectre.Console.Cli.Unsafe;
 using Statiq.Common;
@@ -59,7 +60,8 @@ namespace Statiq.App
         public static ICommandConfigurator AddDelegateCommand(
             this IConfigurator configurator,
             string name,
-            Func<CommandContext, int> func) =>
-            configurator.AddDelegate<EmptyCommandSettings>(name, (c, _) => func(c));
+            Func<CommandContext, int> func,
+            CancellationToken ct = default) =>
+            configurator.AddDelegate<EmptyCommandSettings>(name, (c, _, ct) => func(c));
     }
 }

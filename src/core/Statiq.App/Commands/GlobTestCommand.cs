@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Threading;
 using Spectre.Console.Cli;
 using Statiq.Common;
 using Statiq.Testing;
@@ -12,7 +11,8 @@ namespace Statiq.App
     [Description("Tests a globbing pattern against a sample path.")]
     public class GlobTestCommand : Command<GlobTestCommandSettings>
     {
-        public override int Execute(CommandContext context, GlobTestCommandSettings settings)
+        public override int Execute(CommandContext context, GlobTestCommandSettings settings,
+            CancellationToken cancellationToken = default)
         {
             // Make sure path is absolute
             NormalizedPath path = new NormalizedPath(settings.Path);

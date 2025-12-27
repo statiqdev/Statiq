@@ -40,12 +40,14 @@ namespace Statiq.App
 
         public IFileSystem FileSystem { get; }
 
-        public sealed override async Task<int> ExecuteAsync(CommandContext context, TSettings commandSettings)
+        public sealed override async Task<int> ExecuteAsync(CommandContext context, TSettings commandSettings,
+            CancellationToken cancellationToken = default)
         {
             // Set verbose tracing
             if (commandSettings.LogLevel != LogLevel.Information)
             {
-                ServiceCollection.Configure<LoggerFilterOptions>(options => options.MinLevel = commandSettings.LogLevel);
+                ServiceCollection.Configure<LoggerFilterOptions>(options =>
+                    options.MinLevel = commandSettings.LogLevel);
             }
 
             // File logging
@@ -121,7 +123,9 @@ namespace Statiq.App
                     // If we got here the debug command was unsuccessful
                     logger.LogInformation($"Could not launch a debugger, waiting for manual attach");
                 }
-                logger.LogInformation($"Waiting for a debugger to attach to process {Process.GetCurrentProcess().Id} (or press a key to continue)...");
+
+                logger.LogInformation(
+                    $"Waiting for a debugger to attach to process {Process.GetCurrentProcess().Id} (or press a key to continue)...");
                 while (!Debugger.IsAttached && !Console.KeyAvailable)
                 {
                     Thread.Sleep(100);

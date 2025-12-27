@@ -14,13 +14,13 @@ namespace Statiq.Core
         private const int BlockSize = 16384;
 
         private readonly RecyclableMemoryStreamManager _manager =
-            new RecyclableMemoryStreamManager(
-                BlockSize,
-                RecyclableMemoryStreamManager.DefaultLargeBufferMultiple,
-                RecyclableMemoryStreamManager.DefaultMaximumBufferSize)
+            new RecyclableMemoryStreamManager(new RecyclableMemoryStreamManager.Options
             {
-                MaximumFreeSmallPoolBytes = BlockSize * 32768L * 2, // 1 GB
-            };
+                BlockSize = BlockSize,
+                LargeBufferMultiple = RecyclableMemoryStreamManager.DefaultLargeBufferMultiple,
+                MaximumBufferSize = RecyclableMemoryStreamManager.DefaultMaximumBufferSize,
+                MaximumLargePoolFreeBytes = BlockSize * 32768L * 2, // 1 GB
+            });
 
         public virtual MemoryStream GetStream() => _manager.GetStream();
 

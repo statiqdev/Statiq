@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.Logging;
 using Statiq.Common;
+using Version = SemanticVersioning.Version;
 
 namespace Statiq.Core
 {
@@ -18,16 +19,16 @@ namespace Statiq.Core
             // Get and print the version
             string informationalVersion = versionAttribute.InformationalVersion;
             engine.Logger.LogInformation($"{name} version {informationalVersion}", true);
-            SemVer.Version version = new SemVer.Version(informationalVersion, true);
+            Version version = new Version(informationalVersion, true);
 
             // Get all version ranges
-            (string Key, SemVer.Version Version)[] minimumVersions = engine.Settings.Keys
+            (string Key, Version Version)[] minimumVersions = engine.Settings.Keys
                 .Where(k => k.StartsWith(minimumVersionKey))
                 .Select(k => (Key: k, Value: engine.Settings.GetString(k)))
                 .Where(x => !x.Value.IsNullOrWhiteSpace())
-                .Select(x => (x.Key, new SemVer.Version(x.Value, true)))
+                .Select(x => (x.Key, new Version(x.Value, true)))
                 .ToArray();
-            foreach ((string Key, SemVer.Version Version) minimumVersion in minimumVersions)
+            foreach ((string Key, Version Version) minimumVersion in minimumVersions)
             {
                 if (version < minimumVersion.Version)
                 {

@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Microsoft.Extensions.DependencyInjection;
+using System.Threading;
 using Spectre.Console.Cli;
 using Spectre.Console.Cli.Unsafe;
 using Statiq.Common;
@@ -108,7 +107,7 @@ namespace Statiq.App
         public static Bootstrapper AddDelegateCommand<TSettings>(
             this Bootstrapper bootstrapper,
             string name,
-            Func<CommandContext, TSettings, int> func)
+            Func<CommandContext, TSettings, CancellationToken, int> func)
             where TSettings : CommandSettings =>
             bootstrapper.ConfigureCommands(x => x.AddDelegate(name, func));
 
@@ -116,7 +115,7 @@ namespace Statiq.App
             this Bootstrapper bootstrapper,
             string name,
             string description,
-            Func<CommandContext, TSettings, int> func)
+            Func<CommandContext, TSettings, CancellationToken, int> func)
             where TSettings : CommandSettings =>
             bootstrapper.ConfigureCommands(x => x.AddDelegate(name, func).WithDescription(description));
 

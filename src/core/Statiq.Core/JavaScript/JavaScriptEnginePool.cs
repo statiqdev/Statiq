@@ -11,7 +11,7 @@ namespace Statiq.Core
     {
         private static readonly object EngineSwitcherLock = new object();
 
-        private readonly JsPool<JavaScriptEngine> _pool;
+        private readonly JsPool<JavaScriptEngine, JavaScriptEngine> _pool;
         private bool _disposed = false;
 
         public JavaScriptEnginePool(
@@ -34,7 +34,7 @@ namespace Statiq.Core
                 }
             }
 
-            _pool = new JsPool<JavaScriptEngine>(new JsPoolConfig<JavaScriptEngine>
+            _pool = new JsPool<JavaScriptEngine, JavaScriptEngine>(new JsPoolConfig<JavaScriptEngine>
             {
                 EngineFactory = () => new JavaScriptEngine(JsEngineSwitcher.Current.CreateDefaultEngine()),
                 Initializer = x => initializer?.Invoke(x),

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualBasic;
 using Spectre.Console.Cli;
@@ -14,7 +15,8 @@ namespace Statiq.App
     [Description("Evaluates a globbing pattern against an existing path.")]
     public class GlobEvalCommand : Command<GlobEvalCommandSettings>
     {
-        public override int Execute(CommandContext context, GlobEvalCommandSettings settings)
+        public override int Execute(CommandContext context, GlobEvalCommandSettings settings,
+            CancellationToken cancellationToken = default)
         {
             // Make sure path is absolute
             NormalizedPath path = new NormalizedPath(settings.Path);
@@ -27,7 +29,8 @@ namespace Statiq.App
             LocalFileProvider fileProvider = new LocalFileProvider(fileSystem);
             fileSystem.FileProvider = fileProvider;
             IDirectory directory = fileProvider.GetDirectory(path);
-            foreach (IFile match in (IEnumerable<IFile>)Globber.GetFiles(directory, new[] { settings.Pattern }).ToArray())
+            foreach (IFile match in (IEnumerable<IFile>) Globber.GetFiles(directory, new[] { settings.Pattern })
+                         .ToArray())
             {
                 Console.WriteLine(match.Path.FullPath);
             }

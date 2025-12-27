@@ -15,7 +15,7 @@ namespace Statiq.Core
     {
         private bool _disposed = false;
 
-        public PooledJavaScriptEngine(JavaScriptEngine engine, JsPool<JavaScriptEngine> pool)
+        public PooledJavaScriptEngine(JavaScriptEngine engine, JsPool<JavaScriptEngine, JavaScriptEngine> pool)
         {
             Engine = engine;
             Pool = pool;
@@ -23,7 +23,7 @@ namespace Statiq.Core
 
         internal JavaScriptEngine Engine { get; }
 
-        internal JsPool<JavaScriptEngine> Pool { get; }
+        internal JsPool<JavaScriptEngine, JavaScriptEngine> Pool { get; }
 
         public void Dispose()
         {
