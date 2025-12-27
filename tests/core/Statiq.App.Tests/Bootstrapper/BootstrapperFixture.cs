@@ -136,7 +136,7 @@ namespace Statiq.App.Tests.Bootstrapper
             public async Task AddsComputedMetadataFromCommandLine()
             {
                 // Given
-                string[] args = new[] { "--setting", "\"Foo = => 1 + 1\"" };
+                string[] args = new[] { "--setting", "Foo = => 1 + 1" };
                 App.Bootstrapper bootstrapper = App.Bootstrapper.Factory.CreateDefault(args);
                 object value = null;
                 bootstrapper.AddPipeline(
