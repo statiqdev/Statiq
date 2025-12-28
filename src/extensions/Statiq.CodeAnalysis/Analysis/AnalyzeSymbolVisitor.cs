@@ -80,18 +80,23 @@ namespace Statiq.CodeAnalysis.Analysis
 
             // Get any reflected methods we need
             Assembly workspacesAssembly = typeof(Workspace).Assembly;
-            Type reflectedType = workspacesAssembly.GetType("Microsoft.CodeAnalysis.Shared.Extensions.ITypeSymbolExtensions");
-            MethodInfo reflectedMethod = reflectedType.GetMethod("GetAccessibleMembersInThisAndBaseTypes");
-            _getAccessibleMembersInThisAndBaseTypes = reflectedMethod.MakeGenericMethod(typeof(ISymbol));
-
             Assembly csharpAssembly = typeof(CSharpCompilation).Assembly;
+
+            MethodInfo reflectedMethod = FindAccessibleMembersMethod(workspacesAssembly, csharpAssembly);
+            if (reflectedMethod == null)
+            {
+                throw new InvalidOperationException(
+                    "Could not locate a suitable 'GetAccessibleMembersInThisAndBaseTypes' method via reflection. Roslyn internals may have changed.");
+            }
+
+            _getAccessibleMembersInThisAndBaseTypes = reflectedMethod.MakeGenericMethod(typeof(ISymbol));
             _documentationCommentCompiler = csharpAssembly.GetType("Microsoft.CodeAnalysis.CSharp.DocumentationCommentCompiler");
             _documentationCommentCompilerDefaultVisit = _documentationCommentCompiler.GetMethod("DefaultVisit");
 
             _publicModelSymbol = csharpAssembly.GetType("Microsoft.CodeAnalysis.CSharp.Symbols.PublicModel.Symbol");
             _publicModelSymbolUnderlyingType = _publicModelSymbol.GetProperty("UnderlyingSymbol", BindingFlags.Instance | BindingFlags.NonPublic);
 
-            reflectedType = csharpAssembly.GetType("Microsoft.CodeAnalysis.CSharp.BindingDiagnosticBag");
+            Type reflectedType = csharpAssembly.GetType("Microsoft.CodeAnalysis.CSharp.BindingDiagnosticBag");
             _diagnosticBagGetInstance = reflectedType.GetMethod("GetInstance", 0, BindingFlags.Static | BindingFlags.NonPublic, null, Array.Empty<Type>(), null);
             _diagnosticBagFree = reflectedType.GetMethod("Free", BindingFlags.Instance | BindingFlags.NonPublic);
         }
@@ -647,5 +652,59 @@ namespace Statiq.CodeAnalysis.Analysis
         private static TSymbol GetOriginalSymbolDefinition<TSymbol>(TSymbol symbol)
             where TSymbol : ISymbol =>
             symbol?.Kind == SymbolKind.ErrorType || symbol?.MetadataName == "Nullable`1" ? symbol : (TSymbol)(symbol?.OriginalDefinition ?? symbol);
+
+        // Method added due to changes in underlying Analyzers. GetAccessibleMembersInThisAndBaseTypes is referenced multiple
+        // times so we search for the exact one that we need.
+        private MethodInfo FindAccessibleMembersMethod(Assembly workspacesAssembly, Assembly csharpAssembly)
+        {
+            string targetTypeName = "Microsoft.CodeAnalysis.Shared.Extensions.ITypeSymbolExtensions";
+            string methodName = "GetAccessibleMembersInThisAndBaseTypes";
+            string param0FullName = "Microsoft.CodeAnalysis.ITypeSymbol";
+            string param1FullName = "Microsoft.CodeAnalysis.ISymbol";
+
+            IEnumerable<Assembly> assembliesToSearch = new[] { workspacesAssembly, csharpAssembly }.Distinct();
+
+            foreach (var asm in assembliesToSearch)
+            {
+                // Try direct type lookup first
+                Type candidateType = asm.GetType(targetTypeName, throwOnError: false, ignoreCase: true);
+
+                // Fallback: try to find a type with matching short name (handles internal type moves)
+                if (candidateType == null)
+                {
+                    candidateType = asm.GetTypes().FirstOrDefault(t =>
+                        t.Name == "ITypeSymbolExtensions" ||
+                        (t.FullName != null && t.FullName.EndsWith(".ITypeSymbolExtensions")));
+                }
+
+                if (candidateType == null)
+                {
+                    continue;
+                }
+
+                var candidates = candidateType
+                    .GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
+                    .Where(m => string.Equals(m.Name, methodName, StringComparison.Ordinal))
+                    .Where(m => m.IsGenericMethodDefinition && m.GetGenericArguments().Length == 1);
+
+                foreach (var m in candidates)
+                {
+                    var ps = m.GetParameters();
+                    if (ps.Length != 2) continue;
+
+                    bool p0Matches = ps[0].ParameterType.FullName == param0FullName ||
+                                     ps[0].ParameterType.Name == "ITypeSymbol";
+                    bool p1Matches = ps[1].ParameterType.FullName == param1FullName ||
+                                     ps[1].ParameterType.Name == "ISymbol";
+
+                    if (p0Matches && p1Matches)
+                    {
+                        return m;
+                    }
+                }
+            }
+
+            return null;
+        }
     }
 }
