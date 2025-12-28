@@ -67,11 +67,6 @@ namespace Statiq.Core
 
         protected override async Task<IEnumerable<Common.IDocument>> ExecuteContextAsync(IExecutionContext context)
         {
-#pragma warning disable RCS1163 // Unused parameter.
-            // Handle invalid HTTPS certificates and allow alternate security protocols (see http://stackoverflow.com/a/5670954/807064)
-            ServicePointManager.ServerCertificateValidationCallback = (s, cert, chain, ssl) => true;
-#pragma warning restore RCS1163 // Unused parameter.
-
             // Cache downloaded resources
             Dictionary<string, string> mirrorCache = new Dictionary<string, string>();
 

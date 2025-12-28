@@ -29,7 +29,7 @@ namespace Statiq.App
             LocalFileProvider fileProvider = new LocalFileProvider(fileSystem);
             fileSystem.FileProvider = fileProvider;
             IDirectory directory = fileProvider.GetDirectory(path);
-            foreach (IFile match in (IEnumerable<IFile>) Globber.GetFiles(directory, new[] { settings.Pattern })
+            foreach (IFile match in (IEnumerable<IFile>)Globber.GetFiles(directory, new[] { settings.Pattern })
                          .ToArray())
             {
                 Console.WriteLine(match.Path.FullPath);

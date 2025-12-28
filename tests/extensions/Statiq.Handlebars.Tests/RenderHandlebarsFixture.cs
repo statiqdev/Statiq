@@ -304,7 +304,8 @@ The animal, Chewy, is not a dog.
                     input);
 
                 RenderHandlebars handlebars = new RenderHandlebars()
-                    .Configure((_, __, x) => x.RegisterHelper("link_to",
+                    .Configure((_, __, x) => x.RegisterHelper(
+                        "link_to",
                         (writer, context, _) =>
                         {
                             dynamic model = context.Value;

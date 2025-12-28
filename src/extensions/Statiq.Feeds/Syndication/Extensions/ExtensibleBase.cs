@@ -117,8 +117,10 @@ namespace Statiq.Feeds.Syndication.Extensions
             return dateTime;
         }
 
+#pragma warning disable SYSLIB0013 // Type or member is obsolete
         protected static string ConvertToString(Uri uri) =>
             uri is null ? null : Uri.EscapeUriString(uri.ToString());
+#pragma warning restore SYSLIB0013 // Type or member is obsolete
 
         protected static Uri ConvertToUri(string value)
         {

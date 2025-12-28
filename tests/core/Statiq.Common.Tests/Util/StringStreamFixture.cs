@@ -127,9 +127,9 @@ namespace Statiq.Common.Tests.Util
                 byte[] buffer = new byte[2];
 
                 // When
-                stringStream.Read(buffer, 0, 2);
+                stringStream.ReadExactly(buffer, 0, 2);
                 stringStream.Reset();
-                stringStream.Read(buffer, 0, 2);
+                stringStream.ReadExactly(buffer, 0, 2);
 
                 // Then
                 buffer.ShouldBe(encoding.GetBytes(source).Take(2).ToArray());
@@ -148,9 +148,9 @@ namespace Statiq.Common.Tests.Util
                 byte[] buffer = new byte[2];
 
                 // When
-                stringStream.Read(buffer, 0, 2);
+                stringStream.ReadExactly(buffer, 0, 2);
                 stringStream.Reset();
-                stringStream.Read(buffer, 0, 2);
+                stringStream.ReadExactly(buffer, 0, 2);
 
                 // Then
                 encoding.GetPreamble().Length.ShouldBeGreaterThan(0);

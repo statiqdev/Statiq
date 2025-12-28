@@ -20,7 +20,7 @@ namespace Statiq.Less
             using (Stream stream = file.OpenRead())
             {
                 byte[] buffer = new byte[stream.Length];
-                stream.Read(buffer, 0, (int)stream.Length);
+                stream.ReadExactly(buffer, 0, (int)stream.Length);
                 return buffer;
             }
         }

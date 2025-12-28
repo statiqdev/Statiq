@@ -501,8 +501,7 @@ namespace Statiq.Common.Tests.Meta
                 IMetadata metadata = new Metadata(initialMetadata);
 
                 // When
-                metadata = new Metadata(metadata,
-                    new[] { new KeyValuePair<string, object>("A", new NormalizedPath(path)) });
+                metadata = new Metadata(metadata, new[] { new KeyValuePair<string, object>("A", new NormalizedPath(path)) });
                 object result = metadata.GetString("A");
 
                 // Then
@@ -519,8 +518,7 @@ namespace Statiq.Common.Tests.Meta
                 IMetadata metadata = new Metadata(initialMetadata);
 
                 // When
-                metadata = new Metadata(metadata,
-                    new[] { new KeyValuePair<string, object>("A", new NormalizedPath(path)) });
+                metadata = new Metadata(metadata, new[] { new KeyValuePair<string, object>("A", new NormalizedPath(path)) });
                 object result = metadata.GetString("A");
 
                 // Then
@@ -540,8 +538,7 @@ namespace Statiq.Common.Tests.Meta
                 IMetadata metadata = new Metadata(initialMetadata);
 
                 // When
-                metadata = new Metadata(metadata,
-                    new[] { new KeyValuePair<string, object>("A", new NormalizedPath(path)) });
+                metadata = new Metadata(metadata, new[] { new KeyValuePair<string, object>("A", new NormalizedPath(path)) });
                 NormalizedPath result = metadata.GetPath("A");
 
                 // Then
@@ -581,8 +578,7 @@ namespace Statiq.Common.Tests.Meta
                 IMetadata metadata = new Metadata(initialMetadata);
 
                 // When
-                metadata = new Metadata(metadata,
-                    new[] { new KeyValuePair<string, object>("A", new NormalizedPath(path)) });
+                metadata = new Metadata(metadata, new[] { new KeyValuePair<string, object>("A", new NormalizedPath(path)) });
                 NormalizedPath result = metadata.GetPath("A");
 
                 // Then

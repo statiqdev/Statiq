@@ -173,6 +173,7 @@ namespace Statiq.Core
                    c == 0x00FB3E;
         }
 
+#pragma warning disable CA1505 // Maintainability Index.
         private static bool IsLeftToRight(int c)
         {
             // Generated from Table D.2 of RFC3454
@@ -506,5 +507,6 @@ namespace Statiq.Core
                    c == 0x01D4A2 || c == 0x01D4BB ||
                    c == 0x01D546;
         }
+#pragma warning restore CA1505 // Maintainability Index.
     }
 }

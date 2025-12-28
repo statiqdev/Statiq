@@ -664,7 +664,7 @@ namespace Statiq.CodeAnalysis.Analysis
 
             IEnumerable<Assembly> assembliesToSearch = new[] { workspacesAssembly, csharpAssembly }.Distinct();
 
-            foreach (var asm in assembliesToSearch)
+            foreach (Assembly asm in assembliesToSearch)
             {
                 // Try direct type lookup first
                 Type candidateType = asm.GetType(targetTypeName, throwOnError: false, ignoreCase: true);
@@ -682,14 +682,14 @@ namespace Statiq.CodeAnalysis.Analysis
                     continue;
                 }
 
-                var candidates = candidateType
+                IEnumerable<MethodInfo> candidates = candidateType
                     .GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
                     .Where(m => string.Equals(m.Name, methodName, StringComparison.Ordinal))
                     .Where(m => m.IsGenericMethodDefinition && m.GetGenericArguments().Length == 1);
 
-                foreach (var m in candidates)
+                foreach (MethodInfo m in candidates)
                 {
-                    var ps = m.GetParameters();
+                    ParameterInfo[] ps = m.GetParameters();
                     if (ps.Length != 2) continue;
 
                     bool p0Matches = ps[0].ParameterType.FullName == param0FullName ||

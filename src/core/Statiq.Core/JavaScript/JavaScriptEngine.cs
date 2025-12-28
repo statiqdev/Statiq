@@ -21,11 +21,12 @@ namespace Statiq.Core
             _engine = JsEngineSwitcher.Current.CreateDefaultEngine();
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
             CheckDisposed();
             _engine.Dispose();
             _disposed = true;
+            base.Dispose();
         }
 
         public string Name
