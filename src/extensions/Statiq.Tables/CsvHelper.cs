@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using CsvHelper;
 using CsvHelper.Configuration;
@@ -18,7 +19,7 @@ namespace Statiq.Tables
         public static IReadOnlyList<IReadOnlyList<string>> GetTable(TextReader reader, string delimiter = null)
         {
             List<IReadOnlyList<string>> records = new List<IReadOnlyList<string>>();
-            Configuration configuration = new Configuration
+            CsvConfiguration configuration = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
                 HasHeaderRecord = false
             };
@@ -31,7 +32,7 @@ namespace Statiq.Tables
             {
                 while (csv.Read())
                 {
-                    string[] currentRecord = csv.Context.Record;
+                    string[] currentRecord = csv.Parser.Record;
                     records.Add(currentRecord);
                 }
             }
@@ -53,7 +54,7 @@ namespace Statiq.Tables
                 return;
             }
 
-            CsvWriter csv = new CsvWriter(writer, new Configuration { QuoteAllFields = true });
+            CsvWriter csv = new CsvWriter(writer, new CsvConfiguration(CultureInfo.InvariantCulture) { ShouldQuote = args => true });
             {
                 foreach (IEnumerable<string> row in records)
                 {
