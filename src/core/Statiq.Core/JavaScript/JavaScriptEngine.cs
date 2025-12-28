@@ -26,7 +26,6 @@ namespace Statiq.Core
             CheckDisposed();
             _engine.Dispose();
             _disposed = true;
-            base.Dispose();
         }
 
         public string Name
