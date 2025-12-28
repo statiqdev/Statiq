@@ -81,7 +81,8 @@ namespace Statiq.Web.Hosting.Tests.Middleware
             response.StatusCode.ShouldBe(System.Net.HttpStatusCode.NotFound);
             body.ShouldBe(string.Empty);
         }
-
+#pragma warning disable ASPDEPR004 // WebHostBuilder Obsolete - needs to be replaced with WebApplicationFactory
+#pragma warning disable ASPDEPR008 // WebHostBuilder Obsolete - needs to be replaced with WebApplicationFactory
         private TestServer GetServer(DefaultExtensionsOptions options) =>
             new TestServer(
                 new WebHostBuilder()

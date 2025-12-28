@@ -11,21 +11,23 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Statiq.Common;
 using Statiq.Web.Hosting.LiveReload;
 using Statiq.Web.Hosting.Middleware;
+using Microsoft.AspNetCore.Hosting.Server;
 
 namespace Statiq.Web.Hosting
 {
     /// <summary>
     /// An HTTP server that can serve static files from a specified directory on disk.
     /// </summary>
-    public class Server : IWebHost
+    public class Server : IHost
     {
         private readonly IReadOnlyDictionary<string, string> _contentTypes;
         private readonly IReadOnlyDictionary<string, string> _customHeaders;
-        private readonly IWebHost _host;
+        private readonly IHost _host;
         private readonly LiveReloadServer _liveReloadServer;
 
         public bool Extensionless { get; }
@@ -40,7 +42,8 @@ namespace Statiq.Web.Hosting
         /// </summary>
         public string VirtualDirectory { get; }
 
-        public IFeatureCollection ServerFeatures => _host.ServerFeatures;
+        // IWebHost exposed ServerFeatures directly; IHost does not. Resolve the server and return its features if available.
+        public IFeatureCollection ServerFeatures => _host.Services.GetService<IServer>()?.Features;
 
         public IServiceProvider Services => _host.Services;
 
@@ -50,7 +53,7 @@ namespace Statiq.Web.Hosting
         /// <param name="localPath">The local path to serve files from.</param>
         /// <param name="port">The port the server will serve HTTP requests on.</param>
         public Server(string localPath, int port = 5080)
-            : this(localPath, port, true, null, true, null)
+            : this(localPath, port, true, null, true, null, null, null)
         {
         }
 
@@ -113,29 +116,33 @@ namespace Statiq.Web.Hosting
 
             string currentDirectory = Directory.GetCurrentDirectory();
 
-            _host = new WebHostBuilder()
-                .UseContentRoot(currentDirectory)
-                .UseWebRoot(Path.Combine(currentDirectory, "wwwroot"))
-                .ConfigureLogging(loggingBuilder =>
+            _host = new HostBuilder()
+                .ConfigureWebHost(webHostBuilder =>
                 {
-                    if (loggerProviders is object)
-                    {
-                        foreach (ILoggerProvider loggerProvider in loggerProviders)
+                    webHostBuilder
+                        .UseContentRoot(currentDirectory)
+                        .UseWebRoot(Path.Combine(currentDirectory, "wwwroot"))
+                        .ConfigureLogging(loggingBuilder =>
                         {
-                            if (loggerProvider is object)
+                            if (loggerProviders != null)
                             {
-                                loggingBuilder.AddProvider(
-                                    new ChangeLevelLoggerProvider(
-                                        loggerProvider,
-                                        level => level == LogLevel.Information ? LogLevel.Debug : level));
+                                foreach (ILoggerProvider loggerProvider in loggerProviders)
+                                {
+                                    if (loggerProvider != null)
+                                    {
+                                        loggingBuilder.AddProvider(
+                                            new ChangeLevelLoggerProvider(
+                                                loggerProvider,
+                                                level => level == LogLevel.Information ? LogLevel.Debug : level));
+                                    }
+                                }
                             }
-                        }
-                    }
+                        })
+                        .UseKestrel()
+                        .ConfigureKestrel(x => x.ListenAnyIP(port))
+                        .ConfigureServices(ConfigureServices)
+                        .Configure(ConfigureApp);
                 })
-                .UseKestrel()
-                .ConfigureKestrel(x => x.ListenAnyIP(port))
-                .ConfigureServices(ConfigureServices)
-                .Configure(ConfigureApp)
                 .Build();
         }
 
@@ -158,7 +165,7 @@ namespace Statiq.Web.Hosting
                 options.ForwardedHeaders = ForwardedHeaders.All;
 
                 // Only loopback proxies are allowed by default, clear that restriction
-                options.KnownNetworks.Clear();
+                options.KnownIPNetworks.Clear();
                 options.KnownProxies.Clear();
             });
         }
@@ -172,7 +179,7 @@ namespace Statiq.Web.Hosting
             IWebHostEnvironment host = app.ApplicationServices.GetService<IWebHostEnvironment>();
             host.WebRootFileProvider = compositeFileProvider;
 
-            if (_liveReloadServer is object)
+            if (_liveReloadServer != null)
             {
                 // Inject LiveReload script tags to HTML documents, needs to run first as it overrides output stream
                 app.UseScriptInjection($"{VirtualDirectory ?? string.Empty}/livereload.js?host=localhost&port={Port}");
@@ -237,7 +244,7 @@ namespace Statiq.Web.Hosting
 
         public async Task TriggerReloadAsync()
         {
-            if (_liveReloadServer is object)
+            if (_liveReloadServer != null)
             {
                 await _liveReloadServer.SendReloadMessageAsync();
             }
