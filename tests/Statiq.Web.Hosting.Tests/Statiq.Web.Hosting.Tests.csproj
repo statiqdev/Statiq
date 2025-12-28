@@ -14,8 +14,8 @@
     <ProjectReference Include="..\..\src\Statiq.Web.Hosting\Statiq.Web.Hosting.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="3.0.0" />
-    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="3.0.0" />  <!-- Required for GenerateEmbeddedFilesManifest task -->
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="10.0.1" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="10.0.1" />  <!-- Required for GenerateEmbeddedFilesManifest task -->
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="wwwroot\BasicHtmlDocument.html" />
