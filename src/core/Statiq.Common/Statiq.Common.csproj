@@ -12,9 +12,6 @@
     <PackageReference Include="Microsoft.Extensions.FileSystemGlobbing" Version="10.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.1" />
     <PackageReference Include="NetFabric.Hyperlinq" Version="3.0.0-beta48" />
-    <PackageReference Update="Microsoft.SourceLink.GitHub" Version="8.0.0" />
-    <PackageReference Update="Roslynator.Analyzers" Version="4.15.0" />
-    <PackageReference Update="Microsoft.VisualStudio.Threading.Analyzers" Version="17.14.15" />
   </ItemGroup>
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">

@@ -5,9 +5,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="YamlDotNet" Version="16.3.0" />
-    <PackageReference Update="Microsoft.SourceLink.GitHub" Version="8.0.0" />
-    <PackageReference Update="Roslynator.Analyzers" Version="4.15.0" />
-    <PackageReference Update="Microsoft.VisualStudio.Threading.Analyzers" Version="17.14.15" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\core\Statiq.Common\Statiq.Common.csproj" />
