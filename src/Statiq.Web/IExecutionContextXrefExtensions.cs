@@ -135,7 +135,7 @@ namespace Statiq.Web
                 .SelectMany(x => context.Outputs.FromPipeline(x).Select(y => (PipelineName: x, Document: y)))
                 .Select(x => (x.Document.GetString(WebKeys.Xref), x))
                 .Where(x => x.Item1 is object)
-                .GroupBy(x => x.Item1, x => x.Item2, StringComparer.OrdinalIgnoreCase)
+                .GroupBy(x => x.Item1, x => x.x, StringComparer.OrdinalIgnoreCase)
                 .ToDictionary(x => x.Key, x => (ICollection<(string, IDocument)>)x.ToArray(), StringComparer.OrdinalIgnoreCase);
     }
 }

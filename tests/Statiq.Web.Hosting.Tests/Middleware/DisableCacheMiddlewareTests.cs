@@ -29,7 +29,8 @@ namespace Statiq.Web.Hosting.Tests.Middleware
             response.Headers.GetValues("Pragma").ShouldContain("no-cache");
             response.Content.Headers.GetValues("Expires").ShouldContain("0");
         }
-
+#pragma warning disable ASPDEPR004 // WebHostBuilder Obsolete - needs to be replaced with WebApplicationFactory
+#pragma warning disable ASPDEPR008 // WebHostBuilder Obsolete - needs to be replaced with WebApplicationFactory
         private TestServer GetServer() => new TestServer(
             new WebHostBuilder()
                 .Configure(app => app.UseDisableCache()));

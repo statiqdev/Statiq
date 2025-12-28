@@ -15,7 +15,9 @@ using Statiq.Yaml;
 
 namespace Statiq.Web
 {
+#pragma warning disable CA1710 // Rename to TemplatesDictionary or TemplatesCollection
     public class Templates : IReadOnlyList<Template>, IReadOnlyDictionary<string, Template>
+#pragma warning restore CA1710 // Rename to TemplatesDictionary or TemplatesCollection
     {
         private readonly List<KeyValuePair<string, Template>> _templates = new List<KeyValuePair<string, Template>>();
 
