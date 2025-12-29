@@ -222,7 +222,8 @@ The animal, Chewy, is not a dog.
                                 new { name = "Chewy", type = "hamster" }
                             }
                         }
-                    }, input);
+                    },
+                    input);
 
                 RenderHandlebars handlebars = new RenderHandlebars()
                     .WithBlockHelper(
@@ -342,7 +343,8 @@ The animal, Chewy, is not a dog.
                                 new { name = "Chewy", type = "hamster" }
                             }
                         }
-                    }, input);
+                    },
+                    input);
 
                 RenderHandlebars handlebars = new RenderHandlebars()
                     .Configure((_, __, x) => x.RegisterHelper("StringEqualityBlockHelper", (writer, options, __, arguments) =>

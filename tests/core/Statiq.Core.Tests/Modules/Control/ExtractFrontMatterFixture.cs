@@ -513,7 +513,8 @@ YY")
                 frontMatterContent.ShouldBe(
                     @"AA
 BB
-", frontMatterContent);
+",
+                    frontMatterContent);
                 (await documents.First().GetContentStringAsync()).ShouldBe("XX");
                 (await documents.Skip(1).First().GetContentStringAsync()).ShouldBe("YY");
             }
@@ -547,7 +548,8 @@ Content2")
                 frontMatterContent.ShouldBe(
                     @"FM1
 FM2
-", frontMatterContent);
+",
+                    frontMatterContent);
                 (await documents.First().GetContentStringAsync()).ShouldBe(
                     @"Content1
 Content2");
@@ -582,7 +584,8 @@ Content2")
                 frontMatterContent.ShouldBe(
                     @"FM1---
 FM2
-", frontMatterContent);
+",
+                    frontMatterContent);
                 (await documents.First().GetContentStringAsync()).ShouldBe(
                     @"Content1
 Content2");
@@ -618,7 +621,8 @@ Content2")
                 frontMatterContent.ShouldBe(
                     @"FM1
 FM2
-", frontMatterContent);
+",
+                    frontMatterContent);
                 (await documents.First().GetContentStringAsync()).ShouldBe(
                     @"Content1
 ---
@@ -688,7 +692,8 @@ Content2")
                 frontMatterContent.ShouldBe(
                     @"FM1
 FM2
-", frontMatterContent);
+",
+                    frontMatterContent);
                 (await documents.First().GetContentStringAsync()).ShouldBe(
                     @"Content1
 Content2");
@@ -1047,7 +1052,8 @@ Content2")
                 frontMatterContent.ShouldBe(
                     @"FM1
 FM2
-", frontMatterContent);
+",
+                    frontMatterContent);
                 (await documents.First().GetContentStringAsync()).ShouldBe(
                     @"FM1
 FM2
@@ -1122,7 +1128,8 @@ Content2")
                 frontMatterContent.ShouldBe(
                     @"FM1
 FM2
-", frontMatterContent);
+",
+                    frontMatterContent);
                 (await documents.First().GetContentStringAsync()).ShouldBe(
                     @"Content1
 Content2");
@@ -1163,7 +1170,8 @@ Content2")
                 frontMatterContent.ShouldBe(
                     @"FM1
 FM2
-", frontMatterContent);
+",
+                    frontMatterContent);
                 (await documents.First().GetContentStringAsync()).ShouldBe(
                     @"Content1
 Content2");
@@ -1198,7 +1206,8 @@ Content2")
                 documents.Count().ShouldBe(1);
                 frontMatterContent.ShouldBe(
                     @"!!!
-", frontMatterContent);
+",
+                    frontMatterContent);
                 (await documents.First().GetContentStringAsync()).ShouldBe(
                     @"Content1
 Content2");
@@ -1238,7 +1247,8 @@ Content2")
                 frontMatterContent.ShouldBe(
                     @"FM1
 FM2
-", frontMatterContent);
+",
+                    frontMatterContent);
                 (await documents.First().GetContentStringAsync()).ShouldBe(
                     @"Content1
 Content2");
@@ -1279,7 +1289,8 @@ Content2")
                 frontMatterContent.ShouldBe(
                     @"FM1
 FM2
-", frontMatterContent);
+",
+                    frontMatterContent);
                 (await documents.First().GetContentStringAsync()).ShouldBe(
                     @"+++
 Content1

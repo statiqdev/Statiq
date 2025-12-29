@@ -2,6 +2,7 @@
   <PropertyGroup>
     <Description>Statiq is a configurable static content generation framework. This library provides support for rendering Razor content.</Description>
     <PackageTags>Statiq Static StaticContent StaticSite Blog BlogEngine Razor</PackageTags>
+    <NoWarn>ASPDEPR003</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />

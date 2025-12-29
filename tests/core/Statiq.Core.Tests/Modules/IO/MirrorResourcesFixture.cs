@@ -35,7 +35,8 @@ namespace Statiq.Core.Tests.Modules.IO
                       </head>
                       <body>
                       
-                    </body></html>", StringCompareShould.IgnoreLineEndings);
+                    </body></html>",
+                    StringCompareShould.IgnoreLineEndings);
             }
 
             [Test]
@@ -64,7 +65,8 @@ namespace Statiq.Core.Tests.Modules.IO
                       </head>
                       <body>
                       
-                    </body></html>", StringCompareShould.IgnoreLineEndings);
+                    </body></html>",
+                    StringCompareShould.IgnoreLineEndings);
             }
 
             [Test]
@@ -92,7 +94,8 @@ namespace Statiq.Core.Tests.Modules.IO
                       </head>
                       <body>
                       
-                    </body></html>", StringCompareShould.IgnoreLineEndings);
+                    </body></html>",
+                    StringCompareShould.IgnoreLineEndings);
             }
 
             [TestCase("cdn.jsdelivr.net")]
@@ -123,7 +126,8 @@ namespace Statiq.Core.Tests.Modules.IO
                       </head>
                       <body>
                       </body>
-                    </html>", StringCompareShould.IgnoreLineEndings);
+                    </html>",
+                    StringCompareShould.IgnoreLineEndings);
             }
 
             [TestCase("cdn.jsdelivr.net")]
@@ -153,7 +157,8 @@ namespace Statiq.Core.Tests.Modules.IO
                       </head>
                       <body>
                       </body>
-                    </html>", StringCompareShould.IgnoreLineEndings);
+                    </html>",
+                    StringCompareShould.IgnoreLineEndings);
             }
 
             [Test]
@@ -182,7 +187,8 @@ namespace Statiq.Core.Tests.Modules.IO
                       </head>
                       <body>
                       
-                    </body></html>", StringCompareShould.IgnoreLineEndings);
+                    </body></html>",
+                    StringCompareShould.IgnoreLineEndings);
             }
 
             [Test]
@@ -209,7 +215,8 @@ namespace Statiq.Core.Tests.Modules.IO
                       </head>
                       <body>
                       
-                    </body></html>", StringCompareShould.IgnoreLineEndings);
+                    </body></html>",
+                    StringCompareShould.IgnoreLineEndings);
             }
 
             [Test]
@@ -237,7 +244,8 @@ namespace Statiq.Core.Tests.Modules.IO
                       </head>
                       <body>
                       </body>
-                    </html>", StringCompareShould.IgnoreLineEndings);
+                    </html>",
+                    StringCompareShould.IgnoreLineEndings);
             }
 
             [Test]
@@ -264,7 +272,8 @@ namespace Statiq.Core.Tests.Modules.IO
                       </head>
                       <body>
                       
-                    </body></html>", StringCompareShould.IgnoreLineEndings);
+                    </body></html>",
+                    StringCompareShould.IgnoreLineEndings);
             }
 
             [Test]
@@ -292,7 +301,8 @@ namespace Statiq.Core.Tests.Modules.IO
                       </head>
                       <body>
                       </body>
-                    </html>", StringCompareShould.IgnoreLineEndings);
+                    </html>",
+                    StringCompareShould.IgnoreLineEndings);
             }
 
             [Test]
@@ -320,7 +330,8 @@ namespace Statiq.Core.Tests.Modules.IO
                       </head>
                       <body>
                       </body>
-                    </html>", StringCompareShould.IgnoreLineEndings);
+                    </html>",
+                    StringCompareShould.IgnoreLineEndings);
             }
 
             [Test]
@@ -350,7 +361,8 @@ namespace Statiq.Core.Tests.Modules.IO
                       </head>
                       <body>
                       </body>
-                    </html>", StringCompareShould.IgnoreLineEndings);
+                    </html>",
+                    StringCompareShould.IgnoreLineEndings);
             }
 
             [Test]
@@ -377,7 +389,8 @@ namespace Statiq.Core.Tests.Modules.IO
                       </head>
                       <body>
                       
-                    </body></html>", StringCompareShould.IgnoreLineEndings);
+                    </body></html>",
+                    StringCompareShould.IgnoreLineEndings);
             }
 
             [Test]
@@ -406,7 +419,8 @@ namespace Statiq.Core.Tests.Modules.IO
                       </head>
                       <body>
                       
-                    </body></html>", StringCompareShould.IgnoreLineEndings);
+                    </body></html>",
+                    StringCompareShould.IgnoreLineEndings);
             }
         }
     }

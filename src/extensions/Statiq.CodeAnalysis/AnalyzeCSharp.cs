@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Buildalyzer;
 using Buildalyzer.Workspaces;
@@ -648,7 +649,7 @@ namespace Statiq.CodeAnalysis
             MetadataReference[] compilationReferences = await projects
                 .ToAsyncEnumerable()
                 .Where(x => x.SupportsCompilation)
-                .SelectAwait(async x =>
+                .Select(async (Project x, CancellationToken _) =>
                 {
                     context.LogDebug($"Creating compilation reference for project {x.Name}");
                     Compilation projectCompilation = await x.GetCompilationAsync();

@@ -34,8 +34,8 @@ namespace Statiq.CodeAnalysis.Analysis
             if (maxLineLength < 1)
             {
                 throw new ArgumentException(
-                    nameof(maxLineLength)
-                    + " must be greater than 0.", nameof(maxLineLength));
+                    nameof(maxLineLength) + " must be greater than 0",
+                    nameof(maxLineLength));
             }
             _maxLineLength = maxLineLength;
             NewLinePrefix = newLinePrefix;

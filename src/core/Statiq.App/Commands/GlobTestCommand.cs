@@ -11,7 +11,9 @@ namespace Statiq.App
     [Description("Tests a globbing pattern against a sample path.")]
     public class GlobTestCommand : Command<GlobTestCommandSettings>
     {
-        public override int Execute(CommandContext context, GlobTestCommandSettings settings,
+        public override int Execute(
+            CommandContext context,
+            GlobTestCommandSettings settings,
             CancellationToken cancellationToken = default)
         {
             // Make sure path is absolute

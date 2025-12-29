@@ -150,7 +150,7 @@ namespace Statiq.Core
                 foreach (IElement element in htmlDocument.QuerySelectorAll(_querySelector).Where(t => !t.Ancestors<IHtmlAnchorElement>().Any()))
                 {
                     // Enumerate all descendant text nodes not already in a link element
-                    foreach (IText text in element.Descendents().OfType<IText>().Where(t => !t.Ancestors<IHtmlAnchorElement>().Any()))
+                    foreach (IText text in element.Descendants().OfType<IText>().Where(t => !t.Ancestors<IHtmlAnchorElement>().Any()))
                     {
                         if (ReplaceStrings(text, links, out string newText))
                         {

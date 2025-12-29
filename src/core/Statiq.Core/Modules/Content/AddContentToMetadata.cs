@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Statiq.Common;
 
@@ -55,7 +56,7 @@ namespace Statiq.Core
 
             object content = childOutputs.Length == 1
                 ? (object)await childOutputs[0].GetContentStringAsync()
-                : await childOutputs.ToAsyncEnumerable().SelectAwait(async x => await x.GetContentStringAsync()).ToArrayAsync();
+                : await childOutputs.ToAsyncEnumerable().Select(async (IDocument x, CancellationToken _) => await x.GetContentStringAsync()).ToArrayAsync();
 
             return context.Inputs.Select(input => input.Clone(new MetadataItems { { _key, content } }));
         }

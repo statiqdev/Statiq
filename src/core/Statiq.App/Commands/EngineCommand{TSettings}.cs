@@ -25,14 +25,14 @@ namespace Statiq.App
 
         public Settings Settings { get; }
 
-        public override sealed async Task<int> ExecuteCommandAsync(CommandContext commandContext, TSettings commandSettings)
+        public override sealed async Task<int> ExecuteCommandAsync(CommandContext context, TSettings commandSettings)
         {
             // We need to get the engine command settings to pass to the engine manager
             // First try the actual command settings
             if (!(commandSettings is EngineCommandSettings engineCommandSettings))
             {
                 // Then try the command data or create one and either way copy over the base command settings
-                engineCommandSettings = commandContext.Data as EngineCommandSettings ?? new EngineCommandSettings();
+                engineCommandSettings = context.Data as EngineCommandSettings ?? new EngineCommandSettings();
                 engineCommandSettings.LogLevel = commandSettings.LogLevel;
                 engineCommandSettings.Attach = commandSettings.Debug;
                 engineCommandSettings.Debug = commandSettings.Attach;
@@ -43,13 +43,13 @@ namespace Statiq.App
             // Once the engine manager is created, the configuration settings cannot be used (they will have been copied over)
             using (EngineManager engineManager =
                 new EngineManager(
-                    commandContext,
+                    context,
                     engineCommandSettings,
                     Settings,
                     ServiceCollection,
                     Bootstrapper))
             {
-                return await ExecuteEngineAsync(commandContext, commandSettings, engineManager);
+                return await ExecuteEngineAsync(context, commandSettings, engineManager);
             }
         }
 

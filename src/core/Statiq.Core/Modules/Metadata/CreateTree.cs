@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Statiq.Common;
 
@@ -175,8 +176,8 @@ namespace Statiq.Core
             TreeNodeEqualityComparer treeNodeEqualityComparer = new TreeNodeEqualityComparer();
             Dictionary<string[], TreeNode> nodesDictionary = await context.Inputs
                 .ToAsyncEnumerable()
-                .SelectAwait(async input => new TreeNode(await _treePath.GetValueAsync(input, context), input))
-                .Where(x => x.TreePath is object)
+                .Select(async (IDocument input, CancellationToken _) => new TreeNode(await _treePath.GetValueAsync(input, context), input))
+                .Where(x => x.TreePath != null)
                 .Distinct(treeNodeEqualityComparer)
                 .ToDictionaryAsync(x => x.TreePath, new TreePathEqualityComparer());
 

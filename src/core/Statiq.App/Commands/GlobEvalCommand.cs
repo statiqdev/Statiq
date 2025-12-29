@@ -15,7 +15,9 @@ namespace Statiq.App
     [Description("Evaluates a globbing pattern against an existing path.")]
     public class GlobEvalCommand : Command<GlobEvalCommandSettings>
     {
-        public override int Execute(CommandContext context, GlobEvalCommandSettings settings,
+        public override int Execute(
+            CommandContext context,
+            GlobEvalCommandSettings settings,
             CancellationToken cancellationToken = default)
         {
             // Make sure path is absolute

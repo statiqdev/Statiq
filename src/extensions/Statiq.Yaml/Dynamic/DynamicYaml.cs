@@ -189,28 +189,28 @@ namespace Statiq.Yaml.Dynamic
             return YamlDoc.TryMapValue(_sequenceNode.ToArray()[index], out result);
         }
 
-        public override bool TryGetIndex(GetIndexBinder binder, object[] indices, out object result)
+        public override bool TryGetIndex(GetIndexBinder binder, object[] indexes, out object result)
         {
-            if (indices[0] is string stringKey)
+            if (indexes[0] is string stringKey)
             {
                 if (TryGetValueByKeyAndType(stringKey, binder.ReturnType, out result))
                 {
-                    return indices.Length <= 1 || TryGetIndex(binder, indices.Skip(1).ToArray(), out result);
+                    return indexes.Length <= 1 || TryGetIndex(binder, indexes.Skip(1).ToArray(), out result);
                 }
 
                 return FailToGetValue(out result);
             }
 
-            int? intKey = indices[0] as int?;
+            int? intKey = indexes[0] as int?;
             if (intKey is object)
             {
                 if (TryGetValueByIndex(intKey.Value, out result))
                 {
-                    if (indices.Length > 1)
+                    if (indexes.Length > 1)
                     {
                         if (result is DynamicYaml)
                         {
-                            return ((DynamicYaml)result).TryGetIndex(binder, indices.Skip(1).ToArray(), out result);
+                            return ((DynamicYaml)result).TryGetIndex(binder, indexes.Skip(1).ToArray(), out result);
                         }
                         return FailToGetValue(out result);
                     }
@@ -221,7 +221,7 @@ namespace Statiq.Yaml.Dynamic
                 return FailToGetValue(out result);
             }
 
-            return base.TryGetIndex(binder, indices, out result);
+            return base.TryGetIndex(binder, indexes, out result);
         }
 
         /// <summary>

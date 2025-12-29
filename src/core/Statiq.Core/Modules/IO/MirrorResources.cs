@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
@@ -73,7 +74,7 @@ namespace Statiq.Core
             // Iterate the input documents synchronously so we don't download the same resource more than once
             return await context.Inputs
                 .ToAsyncEnumerable()
-                .SelectAwait(async x => await GetDocumentAsync(x))
+                .Select(async (Common.IDocument x, CancellationToken _) => await GetDocumentAsync(x))
                 .ToListAsync();
 
             async Task<Common.IDocument> GetDocumentAsync(Common.IDocument input)

@@ -40,7 +40,9 @@ namespace Statiq.App
 
         public IFileSystem FileSystem { get; }
 
-        public sealed override async Task<int> ExecuteAsync(CommandContext context, TSettings commandSettings,
+        public sealed override async Task<int> ExecuteAsync(
+            CommandContext context,
+            TSettings commandSettings,
             CancellationToken cancellationToken = default)
         {
             // Set verbose tracing

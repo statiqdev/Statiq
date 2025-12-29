@@ -117,7 +117,8 @@ namespace Statiq.Core
                             path = await destination.GetValueAsync(doc, ctx);
                         }
                         return path;
-                    }), true)
+                    }),
+                true)
         {
             destination.ThrowIfNull(nameof(destination));
         }

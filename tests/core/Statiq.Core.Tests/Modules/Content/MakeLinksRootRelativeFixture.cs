@@ -40,7 +40,8 @@ namespace Statiq.Core.Tests.Modules.Contents
                           <p>Foo <a href=""{absolute}"">Fizzbuzz</a> Bar</p>
                         </div>
                       
-                    </body></html>", StringCompareShould.IgnoreLineEndings);
+                    </body></html>",
+                    StringCompareShould.IgnoreLineEndings);
             }
 
             [TestCase("//fizz/buzz.png", "/fizz/buzz.png")]
@@ -71,7 +72,8 @@ namespace Statiq.Core.Tests.Modules.Contents
                           <p>Foo <img src=""{absolute}""> Bar</p>
                         </div>
                       
-                    </body></html>", StringCompareShould.IgnoreLineEndings);
+                    </body></html>",
+                    StringCompareShould.IgnoreLineEndings);
             }
 
             [Test]
@@ -102,7 +104,8 @@ namespace Statiq.Core.Tests.Modules.Contents
                           <p>Foo <a href=""/virtual/foo/fizz/buzz"">Fizzbuzz</a> Bar</p>
                         </div>
                       
-                    </body></html>", StringCompareShould.IgnoreLineEndings);
+                    </body></html>",
+                    StringCompareShould.IgnoreLineEndings);
             }
 
             [TestCase("https://www.google.com")]

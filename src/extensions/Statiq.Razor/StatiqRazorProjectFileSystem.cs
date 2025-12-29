@@ -27,11 +27,13 @@ namespace Statiq.Razor
             _hostingEnvironment = hostingEnviroment.ThrowIfNull(nameof(hostingEnviroment));
         }
 
+#pragma warning disable CS0809 // Obsolete member overrides non-obsolete member
         [Obsolete("Use GetItem(string path, string fileKind) instead.")]
         public override RazorProjectItem GetItem(string path)
         {
             return GetItem(path, fileKind: null);
         }
+#pragma warning restore CS0809 // Obsolete member overrides non-obsolete member
 
         public override RazorProjectItem GetItem(string path, string fileKind)
         {

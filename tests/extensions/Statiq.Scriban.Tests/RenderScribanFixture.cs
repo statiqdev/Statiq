@@ -204,7 +204,8 @@ custom_value2
                                 }
                             }
                         }
-                    }, input);
+                    },
+                    input);
                 RenderScriban scriban = new RenderScriban();
 
                 // When
@@ -268,7 +269,8 @@ Bar2
                                 })
                             }
                         }
-                    }, input);
+                    },
+                    input);
                 RenderScriban scriban = new RenderScriban();
 
                 // When
@@ -332,7 +334,8 @@ Bar2
                                 })
                             }
                         }
-                    }, input);
+                    },
+                    input);
                 RenderScriban scriban = new RenderScriban()
                     .WithMemberRenamer(x => x.Name.ToUpperInvariant());
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using Statiq.Common;
@@ -56,7 +57,7 @@ namespace Statiq.Core.Tests.Modules.Control
                         List<string> groupContent = await d
                             .GetDocuments(Keys.Children)
                             .ToAsyncEnumerable()
-                            .SelectAwait(async x => await x.GetContentStringAsync())
+                            .Select(async (IDocument x, CancellationToken _) => await x.GetContentStringAsync())
                             .ToListAsync();
                         content.Add(groupContent.ToList());
                         return (object)null;

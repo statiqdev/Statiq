@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Statiq.Common;
 
@@ -93,7 +94,7 @@ namespace Statiq.Core
         {
             List<(IDocument Document, IEnumerable<object> Keys)> groups = await context.Inputs
                 .ToAsyncEnumerable()
-                .SelectAwait(async x => (Document: x, Keys: await _key.GetValueAsync(x, context)))
+                .Select(async (IDocument x, CancellationToken _) => (Document: x, Keys: await _key.GetValueAsync(x, context)))
                 .ToListAsync();
 
             return groups
