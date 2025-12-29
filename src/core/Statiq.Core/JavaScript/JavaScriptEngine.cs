@@ -6,7 +6,7 @@ using JavaScriptEngineSwitcher.Core;
 
 namespace Statiq.Core
 {
-    internal class JavaScriptEngine : JSPool.PooledObject<JavaScriptEngine>, IJavaScriptEngine
+    internal class JavaScriptEngine : IJavaScriptEngine
     {
         private readonly IJsEngine _engine;
         private bool _disposed = false;
@@ -16,12 +16,7 @@ namespace Statiq.Core
             _engine = engine;
         }
 
-        public JavaScriptEngine()
-        {
-            _engine = JsEngineSwitcher.Current.CreateDefaultEngine();
-        }
-
-        public override void Dispose()
+        public void Dispose()
         {
             CheckDisposed();
             _engine.Dispose();

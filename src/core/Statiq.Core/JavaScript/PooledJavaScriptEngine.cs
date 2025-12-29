@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using System.Text;
+using JavaScriptEngineSwitcher.Core;
 using JSPool;
 using Statiq.Common;
 
@@ -11,24 +12,29 @@ namespace Statiq.Core
     /// dispose behavior so that instead of disposing the
     /// underlying engine, it returns the engine to the pool.
     /// </summary>
-    internal class PooledJavaScriptEngine : IJavaScriptEngine
+    internal class PooledJavaScriptEngine : PooledObject<JavaScriptEngine>, IJavaScriptEngine
     {
         private bool _disposed = false;
 
-        public PooledJavaScriptEngine(JavaScriptEngine engine, JsPool<JavaScriptEngine, JavaScriptEngine> pool)
+        public PooledJavaScriptEngine(JavaScriptEngine engine, JsPool<PooledJavaScriptEngine, JavaScriptEngine> pool)
         {
             Engine = engine;
             Pool = pool;
         }
 
+        public PooledJavaScriptEngine()
+        {
+            Engine = new JavaScriptEngine(JsEngineSwitcher.Current.CreateDefaultEngine());
+        }
+
         internal JavaScriptEngine Engine { get; }
 
-        internal JsPool<JavaScriptEngine, JavaScriptEngine> Pool { get; }
+        internal JsPool<PooledJavaScriptEngine, JavaScriptEngine> Pool { get; }
 
-        public void Dispose()
+        public new void Dispose()
         {
             CheckDisposed();
-            Pool.ReturnEngineToPool(Engine);
+            Engine.Dispose();
             _disposed = true;
         }
 

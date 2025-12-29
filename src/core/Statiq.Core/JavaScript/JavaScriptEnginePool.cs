@@ -11,7 +11,7 @@ namespace Statiq.Core
     {
         private static readonly object EngineSwitcherLock = new object();
 
-        private readonly JsPool<JavaScriptEngine, JavaScriptEngine> _pool;
+        private readonly JsPool<PooledJavaScriptEngine, JavaScriptEngine> _pool;
         private bool _disposed = false;
 
         public JavaScriptEnginePool(
@@ -34,7 +34,7 @@ namespace Statiq.Core
                 }
             }
 
-            _pool = new JsPool<JavaScriptEngine, JavaScriptEngine>(new JsPoolConfig<JavaScriptEngine>
+            _pool = new JsPool<PooledJavaScriptEngine, JavaScriptEngine>(new JsPoolConfig<JavaScriptEngine>
             {
                 EngineFactory = () => new JavaScriptEngine(JsEngineSwitcher.Current.CreateDefaultEngine()),
                 Initializer = x => initializer?.Invoke(x),
@@ -52,7 +52,7 @@ namespace Statiq.Core
             _disposed = true;
         }
 
-        public IJavaScriptEngine GetEngine(TimeSpan? timeout = null) => new PooledJavaScriptEngine(_pool.GetEngine(timeout), _pool);
+        public IJavaScriptEngine GetEngine(TimeSpan? timeout = null) => new PooledJavaScriptEngine(_pool.GetEngine(timeout).Engine, _pool);
 
         public void RecycleEngine(IJavaScriptEngine engine)
         {
@@ -65,7 +65,7 @@ namespace Statiq.Core
             {
                 throw new ArgumentException("The specified engine is from a different pool");
             }
-            _pool.DisposeEngine(pooledEngine.Engine);
+            _pool.DisposeEngine(pooledEngine);
         }
 
         public void RecycleAllEngines() => _pool.Recycle();
