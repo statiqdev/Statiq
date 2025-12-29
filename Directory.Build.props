@@ -22,7 +22,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <TargetFramework>net10.0</TargetFramework>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <WarningsNotAsErrors>NU1901;NU1902;NU1903;NU1904;CA1021;CA1062;CA1724;SA1414;</WarningsNotAsErrors>
+    <WarningsNotAsErrors>CA1021;CA1062;CA1724;SA1414;</WarningsNotAsErrors>
   </PropertyGroup>
 
   <ItemGroup>
