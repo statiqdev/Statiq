@@ -18,46 +18,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\core\Statiq.App\Statiq.App.csproj" />
+    <ProjectReference Include="..\..\core\Statiq.Common\Statiq.Common.csproj" />
+    <ProjectReference Include="..\..\core\Statiq.Core\Statiq.Core.csproj" />
     <ProjectReference Include="..\Statiq.Web.Aws\Statiq.Web.Aws.csproj" />
     <ProjectReference Include="..\Statiq.Web.Azure\Statiq.Web.Azure.csproj" />
     <ProjectReference Include="..\Statiq.Web.GitHub\Statiq.Web.GitHub.csproj" />
     <ProjectReference Include="..\Statiq.Web.Hosting\Statiq.Web.Hosting.csproj" />
     <ProjectReference Include="..\Statiq.Web.Netlify\Statiq.Web.Netlify.csproj" />
+    <ProjectReference Include="..\Statiq.Markdown\Statiq.Markdown.csproj" />
+    <ProjectReference Include="..\Statiq.Razor\Statiq.Razor.csproj" />
+    <ProjectReference Include="..\Statiq.Sass\Statiq.Sass.csproj" />
+    <ProjectReference Include="..\Statiq.Less\Statiq.Less.csproj" />
+    <ProjectReference Include="..\Statiq.Yaml\Statiq.Yaml.csproj" />
+    <ProjectReference Include="..\Statiq.Minification\Statiq.Minification.csproj" />
+    <ProjectReference Include="..\Statiq.Feeds\Statiq.Feeds.csproj" />
+    <ProjectReference Include="..\Statiq.Handlebars\Statiq.Handlebars.csproj" />
+    <ProjectReference Include="..\Statiq.Highlight\Statiq.Highlight.csproj" />
+    <ProjectReference Include="..\Statiq.Lunr\Statiq.Lunr.csproj" />
   </ItemGroup>
-
-  <Choose>
-    <When Condition=" '$(StatiqFrameworkVersion)' == ''">
-      <ItemGroup>
-        <ProjectReference Include="..\..\..\Statiq.Framework\src\core\Statiq.App\Statiq.App.csproj" />
-        <ProjectReference Include="..\..\..\Statiq.Framework\src\core\Statiq.Common\Statiq.Common.csproj" />
-        <ProjectReference Include="..\..\..\Statiq.Framework\src\core\Statiq.Core\Statiq.Core.csproj" />
-        <ProjectReference Include="..\..\..\Statiq.Framework\src\extensions\Statiq.Markdown\Statiq.Markdown.csproj" />
-        <ProjectReference Include="..\..\..\Statiq.Framework\src\extensions\Statiq.Razor\Statiq.Razor.csproj" />
-        <ProjectReference Include="..\..\..\Statiq.Framework\src\extensions\Statiq.Sass\Statiq.Sass.csproj" />
-        <ProjectReference Include="..\..\..\Statiq.Framework\src\extensions\Statiq.Less\Statiq.Less.csproj" />
-        <ProjectReference Include="..\..\..\Statiq.Framework\src\extensions\Statiq.Yaml\Statiq.Yaml.csproj" />
-        <ProjectReference Include="..\..\..\Statiq.Framework\src\extensions\Statiq.Minification\Statiq.Minification.csproj" />
-        <ProjectReference Include="..\..\..\Statiq.Framework\src\extensions\Statiq.Feeds\Statiq.Feeds.csproj" />
-        <ProjectReference Include="..\..\..\Statiq.Framework\src\extensions\Statiq.Handlebars\Statiq.Handlebars.csproj" />
-        <ProjectReference Include="..\..\..\Statiq.Framework\src\extensions\Statiq.Highlight\Statiq.Highlight.csproj" />
-        <ProjectReference Include="..\..\..\Statiq.Framework\src\extensions\Statiq.Lunr\Statiq.Lunr.csproj" />
-      </ItemGroup>
-    </When>
-    <Otherwise>
-      <ItemGroup>
-        <PackageReference Include="Statiq.App" Version="$(StatiqFrameworkVersion)" />
-        <PackageReference Include="Statiq.Markdown" Version="$(StatiqFrameworkVersion)" />
-        <PackageReference Include="Statiq.Razor" Version="$(StatiqFrameworkVersion)" />
-        <PackageReference Include="Statiq.Sass" Version="$(StatiqFrameworkVersion)" />
-        <PackageReference Include="Statiq.Less" Version="$(StatiqFrameworkVersion)" />
-        <PackageReference Include="Statiq.Yaml" Version="$(StatiqFrameworkVersion)" />
-        <PackageReference Include="Statiq.Minification" Version="$(StatiqFrameworkVersion)" />
-        <PackageReference Include="Statiq.Feeds" Version="$(StatiqFrameworkVersion)" />
-        <PackageReference Include="Statiq.Handlebars" Version="$(StatiqFrameworkVersion)" />
-        <PackageReference Include="Statiq.Highlight" Version="$(StatiqFrameworkVersion)" />
-        <PackageReference Include="Statiq.Lunr" Version="$(StatiqFrameworkVersion)" />
-      </ItemGroup>
-    </Otherwise>
-  </Choose>
 
 </Project>

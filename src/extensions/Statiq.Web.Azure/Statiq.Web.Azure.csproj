@@ -4,21 +4,11 @@
     <PackageTags>Statiq Static StaticContent StaticSite Blog BlogEngine Azure AppService</PackageTags>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\core\Statiq.Common\Statiq.Common.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Azure.Search.Documents" Version="11.2.1" />
     <PackageReference Include="Polly" Version="8.6.5" />
   </ItemGroup>
-
-  <Choose>
-    <When Condition=" '$(StatiqFrameworkVersion)' == ''">
-      <ItemGroup>
-        <ProjectReference Include="..\..\..\Statiq.Framework\src\core\Statiq.Common\Statiq.Common.csproj" />
-      </ItemGroup>
-    </When>
-    <Otherwise>
-      <ItemGroup>
-        <PackageReference Include="Statiq.Common" Version="$(StatiqFrameworkVersion)" />
-      </ItemGroup>
-    </Otherwise>
-  </Choose>
 
 </Project>

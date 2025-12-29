@@ -48,7 +48,7 @@ namespace Statiq.Testing
 
         public bool Contains(KeyValuePair<string, IPipeline> item) => ((IDictionary<string, IPipeline>)_pipelines).Contains(item);
 
-        public bool ContainsKey(string name) => _pipelines.ContainsKey(name);
+        public bool ContainsKey(string key) => _pipelines.ContainsKey(key);
 
         public void CopyTo(KeyValuePair<string, IPipeline>[] array, int arrayIndex) =>
             ((IDictionary<string, IPipeline>)_pipelines).CopyTo(array, arrayIndex);
@@ -58,8 +58,8 @@ namespace Statiq.Testing
         public bool Remove(KeyValuePair<string, IPipeline> item) =>
             ((IDictionary<string, IPipeline>)_pipelines).Remove(item);
 
-        public bool TryGetValue(string name, out IPipeline value) =>
-            _pipelines.TryGetValue(name, out value);
+        public bool TryGetValue(string key, out IPipeline value) =>
+            _pipelines.TryGetValue(key, out value);
 
         public IEnumerator<KeyValuePair<string, IPipeline>> GetEnumerator() =>
             ((IDictionary<string, IPipeline>)_pipelines).GetEnumerator();

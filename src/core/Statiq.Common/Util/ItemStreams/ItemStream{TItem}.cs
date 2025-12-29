@@ -88,8 +88,8 @@ namespace Statiq.Common
         public sealed override Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
             => Task.FromResult(Read(new Span<byte>(buffer, offset, count)));
 
-        public sealed override ValueTask<int> ReadAsync(Memory<byte> memory, CancellationToken cancellationToken)
-            => new ValueTask<int>(Read(memory.Span));
+        public sealed override ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken)
+            => new ValueTask<int>(Read(buffer.Span));
 
         public sealed override int Read(Span<byte> buffer)
         {

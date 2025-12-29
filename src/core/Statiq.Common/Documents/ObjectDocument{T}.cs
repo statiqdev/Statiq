@@ -30,7 +30,9 @@ namespace Statiq.Common
         /// <summary>
         /// The underlying object.
         /// </summary>
+#pragma warning disable CA1720
         public T Object { get; }
+#pragma warning restore CA1720
 
         /// <inheritdoc />
         public NormalizedPath Source { get; }

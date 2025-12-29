@@ -23,7 +23,9 @@ namespace Statiq.Common
             _disposeStream = disposeStream;
         }
 
+#pragma warning disable CA1721
         protected Stream Stream { get; }
+#pragma warning restore CA1721
 
         /// <summary>
         /// Gets the wrapped stream and locks access until it's disposed.

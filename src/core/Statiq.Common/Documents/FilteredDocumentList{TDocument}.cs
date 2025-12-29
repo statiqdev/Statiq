@@ -28,7 +28,7 @@ namespace Statiq.Common
 
         public override FilteredDocumentList<TDocument> this[params string[] patterns] => _filterFunc(this, patterns);
 
-        public TDocument Get(NormalizedPath path) => _tree.Get(path);
+        public TDocument Get(NormalizedPath destinationPath) => _tree.Get(destinationPath);
 
         public DocumentList<TDocument> GetAncestorsOf(TDocument document, bool includeSelf) => _tree.GetAncestorsOf(document, includeSelf);
 

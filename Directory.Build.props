@@ -1,17 +1,17 @@
 <Project>
   <PropertyGroup>
-    <Version Condition="'$(StatiqWebVersion)' == ''">1.0.0</Version>
-    <Version Condition="'$(StatiqWebVersion)' != ''">$(StatiqWebVersion)</Version>
+    <Version Condition="'$(StatiqVersion)' == ''">1.0.0</Version>
+    <Version Condition="'$(StatiqVersion)' != ''">$(StatiqVersion)</Version>
     <InformationalVersion>$(Version)</InformationalVersion>
     <AssemblyVersion>$(Version.Split('-')[0])</AssemblyVersion>
     <FileVersion>$(Version.Split('-')[0])</FileVersion>
-    <Product>Statiq Web</Product>
+    <Product>Statiq</Product>
     <Copyright>Copyright © Statiq/Dave Glick</Copyright>
     <Authors>Dave Glick, Other Awesome Contributors</Authors>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageIcon>icon.png</PackageIcon>
-    <PackageProjectUrl>https://github.com/statiqdev/Statiq.Web</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/statiqdev/Statiq.Web.git</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/statiqdev/Statiq</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/statiqdev/Statiq.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>

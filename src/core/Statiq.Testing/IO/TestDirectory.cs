@@ -80,16 +80,16 @@ namespace Statiq.Testing
                 .Where(x => x.Exists);
         }
 
-        public IDirectory GetDirectory(NormalizedPath path)
+        public IDirectory GetDirectory(NormalizedPath directory)
         {
-            path.ThrowIfNull(nameof(path));
+            directory.ThrowIfNull(nameof(directory));
 
-            if (!path.IsRelative)
+            if (!directory.IsRelative)
             {
-                throw new ArgumentException("Path must be relative", nameof(path));
+                throw new ArgumentException("Path must be relative", nameof(directory));
             }
 
-            return _fileSystem.GetDirectory(Path.Combine(path));
+            return _fileSystem.GetDirectory(Path.Combine(directory));
         }
 
         public IFile GetFile(NormalizedPath path)

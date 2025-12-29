@@ -11,6 +11,9 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\core\Statiq.Common\Statiq.Common.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="10.0.1" />
   </ItemGroup>
   <ItemGroup>
@@ -21,18 +24,5 @@
       <_Parameter1>DynamicProxyGenAssembly2</_Parameter1>
     </AssemblyAttribute>
   </ItemGroup>
-
-  <Choose>
-    <When Condition=" '$(StatiqFrameworkVersion)' == ''">
-      <ItemGroup>
-        <ProjectReference Include="..\..\..\Statiq.Framework\src\core\Statiq.Common\Statiq.Common.csproj" />
-      </ItemGroup>
-    </When>
-    <Otherwise>
-      <ItemGroup>
-        <PackageReference Include="Statiq.Common" Version="$(StatiqFrameworkVersion)" />
-      </ItemGroup>
-    </Otherwise>
-  </Choose>
 
 </Project>

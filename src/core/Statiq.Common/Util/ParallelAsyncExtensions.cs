@@ -17,9 +17,9 @@ namespace Statiq.Common
             this IEnumerable<TSource> items,
             Func<TSource, Task<bool>> asyncPredicate,
             CancellationToken cancellationToken = default) =>
-                (await Task.WhenAll(items.Select(x => Task.Run(async () => (x, await asyncPredicate(x)), cancellationToken))))
-                    .Where(x => x.Item2)
-                    .Select(x => x.Item1);
+                (await Task.WhenAll(items.Select(x => Task.Run(async () => (Item: x, Pedicate: await asyncPredicate(x)), cancellationToken))))
+                    .Where(x => x.Pedicate)
+                    .Select(x => x.Item);
 
         /// <summary>
         /// Invokes an async selector in parallel.

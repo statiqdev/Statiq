@@ -519,7 +519,8 @@ namespace Statiq.Feeds
             {
                 IHtmlDocument dom = parser.ParseDocument(string.Empty);
                 INodeList nodes = parser.ParseFragment(value, dom.Body);
-                IEnumerable<IElement> elements = nodes.SelectMany(x => x.Descendents<IElement>().Where(y => y.HasAttribute("href") || y.HasAttribute("src")));
+                IEnumerable<IElement> elements = nodes
+                    .SelectMany(x => x.Descendants<IElement>().Where(y => y.HasAttribute("href") || y.HasAttribute("src")));
                 bool replaced = false;
                 foreach (IElement element in elements)
                 {

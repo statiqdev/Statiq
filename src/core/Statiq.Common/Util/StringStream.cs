@@ -46,7 +46,9 @@ namespace Statiq.Common
             }
         }
 
+#pragma warning disable CA1720
         public string String { get; }
+#pragma warning restore CA1720
 
         public override bool CanRead => true;
 
@@ -105,8 +107,8 @@ namespace Statiq.Common
         public override Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
             => Task.FromResult(Read(new Span<byte>(buffer, offset, count)));
 
-        public override ValueTask<int> ReadAsync(Memory<byte> memory, CancellationToken cancellationToken)
-            => new ValueTask<int>(Read(memory.Span));
+        public override ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken)
+            => new ValueTask<int>(Read(buffer.Span));
 
         public sealed override int Read(Span<byte> buffer)
         {

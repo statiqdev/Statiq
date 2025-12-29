@@ -4,20 +4,10 @@
     <PackageTags>Statiq Static StaticContent StaticSite Blog BlogEngine AmazonWebServices AWS</PackageTags>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\core\Statiq.Common\Statiq.Common.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
-
-  <Choose>
-    <When Condition=" '$(StatiqFrameworkVersion)' == ''">
-      <ItemGroup>
-        <ProjectReference Include="..\..\..\Statiq.Framework\src\core\Statiq.Common\Statiq.Common.csproj" />
-      </ItemGroup>
-    </When>
-    <Otherwise>
-      <ItemGroup>
-        <PackageReference Include="Statiq.Common" Version="$(StatiqFrameworkVersion)" />
-      </ItemGroup>
-    </Otherwise>
-  </Choose>
 
 </Project>

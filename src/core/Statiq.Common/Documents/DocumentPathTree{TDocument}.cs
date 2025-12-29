@@ -93,11 +93,11 @@ namespace Statiq.Common
             return path;
         }
 
-        public TDocument Get(NormalizedPath path)
+        public TDocument Get(NormalizedPath destinationPath)
         {
             foreach ((NormalizedPath, TDocument) item in _documents)
             {
-                if (_pathFunc(item.Item2).Equals(path))
+                if (_pathFunc(item.Item2).Equals(destinationPath))
                 {
                     return item.Item2;
                 }

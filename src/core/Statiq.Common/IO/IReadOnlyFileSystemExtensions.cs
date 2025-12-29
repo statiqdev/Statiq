@@ -168,9 +168,9 @@ namespace Statiq.Common
             // Then try to find a directory
             return fileSystem.GetUnmappedInputPaths(path, out _)
                 .Reverse()
-                .Select(x => (x, fileSystem.GetDirectory(x)))
-                .Where(x => x.Item2.Exists)
-                .Select(x => x.Item1.Parent)
+                .Select(x => (Path: x, Directory: fileSystem.GetDirectory(x)))
+                .Where(x => x.Directory.Exists)
+                .Select(x => x.Path.Parent)
                 .FirstOrDefault();
         }
 

@@ -1,21 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Statiq.Web\Statiq.Web.csproj" />
+    <ProjectReference Include="..\..\..\src\extensions\Statiq.Web\Statiq.Web.csproj" />
+    <ProjectReference Include="..\..\..\src\core\Statiq.Common\Statiq.Common.csproj" />
+    <ProjectReference Include="..\..\..\src\core\Statiq.Testing\Statiq.Testing.csproj" />
   </ItemGroup>
-
-  <Choose>
-    <When Condition=" '$(StatiqFrameworkVersion)' == ''">
-      <ItemGroup>
-        <ProjectReference Include="..\..\..\Statiq.Framework\src\core\Statiq.Common\Statiq.Common.csproj" />
-        <ProjectReference Include="..\..\..\Statiq.Framework\src\core\Statiq.Testing\Statiq.Testing.csproj" />
-      </ItemGroup>
-    </When>
-    <Otherwise>
-      <ItemGroup>
-        <PackageReference Include="Statiq.Testing" Version="$(StatiqFrameworkVersion)" />
-      </ItemGroup>
-    </Otherwise>
-  </Choose>
 
   <PropertyGroup Condition=" '$(OS)' == 'Windows_NT' ">
     <DefineConstants>Is_Windows</DefineConstants>

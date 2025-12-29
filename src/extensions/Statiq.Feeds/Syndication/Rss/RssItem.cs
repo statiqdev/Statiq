@@ -223,6 +223,7 @@ namespace Statiq.Feeds.Syndication.Rss
         }
 
         [XmlElement("guid")]
+#pragma warning disable CA1720
         public RssGuid Guid
         {
             get
@@ -235,6 +236,7 @@ namespace Statiq.Feeds.Syndication.Rss
                 _guid = value;
             }
         }
+#pragma warning restore CA1720
 
         [XmlIgnore]
         public bool GuidSpecified
