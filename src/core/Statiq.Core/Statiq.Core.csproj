@@ -6,7 +6,7 @@
   <ItemGroup>
     <PackageReference Include="JavaScriptEngineSwitcher.Core" Version="3.24.1" />
     <PackageReference Include="JavaScriptEngineSwitcher.Jint" Version="3.30.3" />
-    <PackageReference Include="JSPool" Version="4.0.0" />
+    <PackageReference Include="JSPool" Version="2.0.1" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.10.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.1" />
     <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="3.0.1" />
