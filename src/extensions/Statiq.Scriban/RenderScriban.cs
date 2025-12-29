@@ -33,6 +33,7 @@ namespace Statiq.Scriban
         private MemberRenamerDelegate _renamer;
         private ParserOptions _parserOptions;
         private LexerOptions _lexerOptions;
+        private bool _liquid;
 
         /// <summary>
         /// Parses Scriban templates in each input document and outputs documents with rendered content.
@@ -40,6 +41,7 @@ namespace Statiq.Scriban
         public RenderScriban()
         {
             _lexerOptions = LexerOptions.Default;
+            _liquid = false;
         }
 
         /// <summary>
@@ -102,6 +104,17 @@ namespace Statiq.Scriban
             return this;
         }
 
+        /// <summary>
+        /// Specifies that templates should be treated as Liquid templates instead of Scriban.
+        /// Short for doing <c>WithLexerOptions(new LexerOptions { Mode = ScriptMode.Liquid })</c>.
+        /// </summary>
+        /// <returns>The current module instance.</returns>
+        public RenderScriban AsLiquid()
+        {
+            _liquid = true;
+            return this;
+        }
+
         /// <inheritdoc />
         protected override async Task<IEnumerable<IDocument>> ExecuteInputAsync(IDocument input, IExecutionContext context)
         {
@@ -127,7 +140,9 @@ namespace Statiq.Scriban
 
             _renamer ??= StandardMemberRenamer.Default;
 
-            Template template = Template.Parse(content, input.Source.FullPath, _parserOptions, _lexerOptions);
+            Template template = _liquid
+                ? Template.ParseLiquid(content, input.Source.FullPath, _parserOptions, _lexerOptions)
+                : Template.Parse(content, input.Source.FullPath, _parserOptions, _lexerOptions);
 
             if (template.HasErrors)
             {
