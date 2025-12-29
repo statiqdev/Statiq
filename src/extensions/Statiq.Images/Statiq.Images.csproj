@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>Statiq is a configurable static content generation framework. This library provides support for manipulating images.</Description>
+    <PackageTags>Statiq Static StaticContent StaticSite Blog BlogEngine Images ImageProcessor</PackageTags>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\core\Statiq.Common\Statiq.Common.csproj" />
+  </ItemGroup>
+</Project>

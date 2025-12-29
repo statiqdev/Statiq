@@ -1,0 +1,6 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\core\Statiq.App\Statiq.App.csproj" />
+    <ProjectReference Include="..\..\..\src\core\Statiq.Testing\Statiq.Testing.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\core\Statiq.Common\Statiq.Common.csproj" />
+    <ProjectReference Include="..\..\..\src\core\Statiq.Testing\Statiq.Testing.csproj" />
+    <ProjectReference Include="..\..\..\src\extensions\Statiq.Xmp\Statiq.Xmp.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Samples\RomantiqueInitials.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Samples\RomantiqueInitials.ttf.xmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="Samples\Flamme.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Samples\RomantiqeInitials.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>

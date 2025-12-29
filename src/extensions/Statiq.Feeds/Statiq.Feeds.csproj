@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>Statiq is a configurable static content generation framework. This library provides support for feeds and syndication including RSS and Atom.</Description>
+    <PackageTags>Statiq Static StaticContent StaticSite RSS Atom Syndication</PackageTags>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\core\Statiq.Common\Statiq.Common.csproj" />
+  </ItemGroup>
+</Project>

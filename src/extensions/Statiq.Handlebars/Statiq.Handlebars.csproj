@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>Statiq is a configurable static content generation framework. This library provides support for rendering Handlebars content.</Description>
+    <PackageTags>Statiq Static StaticContent StaticSite Blog BlogEngine Handlebars</PackageTags>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Handlebars.Net" Version="2.1.6" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\core\Statiq.Common\Statiq.Common.csproj" />
+  </ItemGroup>
+</Project>

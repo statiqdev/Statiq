@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>Statiq is a configurable static content generation framework. This library performs server side highlighting of code blocks.</Description>
+    <PackageTags>Statiq Static StaticContent StaticSite Blog BlogEngine Highlight.js</PackageTags>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="highlight.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="highlight.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\core\Statiq.Common\Statiq.Common.csproj" />
+  </ItemGroup>
+</Project>

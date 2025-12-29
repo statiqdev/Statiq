@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>Statiq is a configurable static content generation framework. This library provides support for rendering Scriban and Liquid content.</Description>
+    <PackageTags>Statiq Static StaticContent StaticSite Blog BlogEngine Scriban Liquid</PackageTags>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Scriban" Version="6.5.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\core\Statiq.Common\Statiq.Common.csproj" />
+  </ItemGroup>
+</Project>

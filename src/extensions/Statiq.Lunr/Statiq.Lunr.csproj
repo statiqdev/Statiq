@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>Statiq is a configurable static content generation framework. This library provides support for creating search indexes.</Description>
+    <PackageTags>Statiq Static StaticContent StaticSite Blog BlogEngine SearchIndex</PackageTags>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="LunrCore" Version="2.3.10" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\core\Statiq.Common\Statiq.Common.csproj" />
+  </ItemGroup>
+</Project>

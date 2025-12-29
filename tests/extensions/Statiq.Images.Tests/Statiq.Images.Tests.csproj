@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\core\Statiq.Common\Statiq.Common.csproj" />
+    <ProjectReference Include="..\..\..\src\core\Statiq.Core\Statiq.Core.csproj" />
+    <ProjectReference Include="..\..\..\src\core\Statiq.Testing\Statiq.Testing.csproj" />
+    <ProjectReference Include="..\..\..\src\extensions\Statiq.Images\Statiq.Images.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="logo-square.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>Statiq is a configurable static content generation framework. This library provides support for analyzing XML metadata.</Description>
+    <PackageTags>Statiq Static StaticContent StaticSite Blog BlogEngine XMP Metadata</PackageTags>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MetadataExtractor" Version="2.9.0" />
+    <PackageReference Include="SharpZipLib" Version="1.4.2" />
+    <PackageReference Include="XmpCore" Version="6.1.10.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\core\Statiq.Common\Statiq.Common.csproj" />
+  </ItemGroup>
+</Project>

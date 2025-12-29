@@ -1,4 +1,5 @@
 [Bb]in/
+[Bb]uild/
 [Oo]bj/
 [Dd]ebug/
 [Rr]elease/
@@ -37,5 +38,6 @@ TestResult.xml
 /_NCrunch_Statiq.Framework
 .vscode
 *.pfx
-cache/
 .idea
+.ionide
+cache/
