@@ -11,7 +11,6 @@ namespace Statiq.Tables
     {
         public static IReadOnlyList<IReadOnlyList<string>> GetTable(Stream stream, int sheetNumber = 0)
         {
-            SetLicense();
             using (ExcelPackage excel = new ExcelPackage(stream))
             {
                 excel.Compatibility.IsWorksheets1Based = false;
@@ -28,7 +27,6 @@ namespace Statiq.Tables
 
         public static IReadOnlyList<IReadOnlyList<string>> GetTable(ExcelWorksheet sheet)
         {
-            SetLicense();
             ExcelAddressBase dimension = sheet.Dimension;
 
             if (dimension is null)
@@ -53,11 +51,6 @@ namespace Statiq.Tables
             }
 
             return table;
-        }
-
-        private static void SetLicense()
-        {
-            ExcelPackage.License.SetNonCommercialOrganization("StatiqDev");
         }
     }
 }
