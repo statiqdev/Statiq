@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="NetlifySharp" Version="1.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
 
   <Choose>
