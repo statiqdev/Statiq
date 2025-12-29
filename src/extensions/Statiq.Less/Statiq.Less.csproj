@@ -5,6 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="dotless.Core" Version="1.6.7" />
+    <PackageReference Include="System.Drawing.Common" Version="10.0.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\core\Statiq.Common\Statiq.Common.csproj" />
