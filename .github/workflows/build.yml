@@ -28,10 +28,11 @@ jobs:
           dotnet-version: |
             3.1.x
             6.0.x
+            10.0.x
       - name: Build and Test
         run: dotnet test --logger "trx;LogFileName=test-results.trx"
       - name: Upload Test Results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         if: success() || failure()
         with:
           name: test-results-${{ matrix.os }}

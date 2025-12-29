@@ -23,7 +23,7 @@ namespace Statiq.Web.Tests
             string path = Path.GetFullPath(
                 Path.Combine(
                     Path.GetDirectoryName(typeof(ExamplesIntegrationFixture).Assembly.Location),
-                    @"..\..\..\..\..\examples\Statiq.Web.Examples"));
+                    @"..\..\..\..\..\..\examples\Statiq.Web.Examples"));
             ProcessLauncher processLauncher = new ProcessLauncher("dotnet", "run")
             {
                 WorkingDirectory = path
