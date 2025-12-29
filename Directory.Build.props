@@ -22,7 +22,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <TargetFramework>net10.0</TargetFramework>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <WarningsNotAsErrors>NU1510;NU1901;NU1902;NU1903;NU1904;CA1724;CS0809;CS0618;CA1021;CA1040;CA1062;CA1710;CA1711;CA1720;CA1721;CA1725;SA1503;SA1117;SA1414;SA1142;VSTHRD110;ASPDEPR003</WarningsNotAsErrors>
+    <WarningsNotAsErrors>CA1724;CS0809;CS0618;CA1021;CA1040;CA1062;CA1710;CA1711;CA1720;CA1721;CA1725;SA1503;SA1117;SA1414;SA1142;VSTHRD110;ASPDEPR003</WarningsNotAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)\LICENSE.md" Pack="true" PackagePath=""/>
