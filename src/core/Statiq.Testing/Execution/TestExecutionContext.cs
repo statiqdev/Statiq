@@ -305,13 +305,8 @@ namespace Statiq.Testing
         }
 
         /// <inheritdoc/>
-        public IJavaScriptEnginePool GetJavaScriptEnginePool(
-            Action<IJavaScriptEngine> initializer = null,
-            int startEngines = 10,
-            int maxEngines = 25,
-            int maxUsagesPerEngine = 100,
-            TimeSpan? engineTimeout = null) =>
-            Engine.GetJavaScriptEnginePool(initializer, startEngines, maxEngines, maxUsagesPerEngine, engineTimeout);
+        public IJavaScriptEngine GetJavaScriptEngine(Action<IJavaScriptEngine> configureEngine = null) =>
+            Engine.GetJavaScriptEngine(configureEngine);
 
         public Func<IJavaScriptEngine> JsEngineFunc
         {

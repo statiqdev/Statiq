@@ -10,6 +10,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using JavaScriptEngineSwitcher.Core;
+using JavaScriptEngineSwitcher.Jint;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -35,6 +37,8 @@ namespace Statiq.Core
 
         // Gets initialized on first execute and reset when the pipeline collection changes
         private PipelinePhase[] _phases;
+
+        private static readonly object JsEngineSwitcherLock = new object();
 
         private bool _disposed;
 
@@ -1057,18 +1061,25 @@ namespace Statiq.Core
         }
 
         /// <inheritdoc/>
-        public IJavaScriptEnginePool GetJavaScriptEnginePool(
-            Action<IJavaScriptEngine> initializer = null,
-            int startEngines = 10,
-            int maxEngines = 25,
-            int maxUsagesPerEngine = 100,
-            TimeSpan? engineTimeout = null) =>
-            new JavaScriptEnginePool(
-                initializer,
-                startEngines,
-                maxEngines,
-                maxUsagesPerEngine,
-                engineTimeout ?? TimeSpan.FromSeconds(5));
+        public IJavaScriptEngine GetJavaScriptEngine(Action<IJavaScriptEngine> configureEngine = null)
+        {
+            // First we need to check if the JsEngineSwitcher has been configured. We'll do this
+            // by checking the DefaultEngineName being set. If that's there we can safely assume
+            // its been configured somehow (maybe via a configuration file). If not we'll wire up
+            // Jint as the default engine.
+            lock (JsEngineSwitcherLock)
+            {
+                if (string.IsNullOrWhiteSpace(JsEngineSwitcher.Current.DefaultEngineName))
+                {
+                    JsEngineSwitcher.Current.EngineFactories.Add(new JintJsEngineFactory());
+                    JsEngineSwitcher.Current.DefaultEngineName = JintJsEngine.EngineName;
+                }
+            }
+
+            IJavaScriptEngine engine = new JavaScriptEngine(JsEngineSwitcher.Current.CreateDefaultEngine());
+            configureEngine?.Invoke(engine);
+            return engine;
+        }
 
         /// <summary>
         /// Applies settings for analyzers and log levels as "[analyzer]=[log level]" (log level is optional, "All" to set all analyzers).

@@ -162,13 +162,8 @@ namespace Statiq.Core
         public Stream GetContentStream(string content = null) => _contextData.Engine.GetContentStream(content);
 
         /// <inheritdoc/>
-        public IJavaScriptEnginePool GetJavaScriptEnginePool(
-            Action<IJavaScriptEngine> initializer = null,
-            int startEngines = 10,
-            int maxEngines = 25,
-            int maxUsagesPerEngine = 100,
-            TimeSpan? engineTimeout = null) =>
-            _contextData.Engine.GetJavaScriptEnginePool(initializer, startEngines, maxEngines, maxUsagesPerEngine, engineTimeout);
+        public IJavaScriptEngine GetJavaScriptEngine(Action<IJavaScriptEngine> configureEngine = null) =>
+            _contextData.Engine.GetJavaScriptEngine(configureEngine);
 
         // IDocumentFactory
 

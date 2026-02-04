@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AngleSharp.Html.Parser;
@@ -58,32 +59,34 @@ namespace Statiq.Highlight
                 HighlightJsFile,
                 AddPre);
 
-            using (IJavaScriptEnginePool enginePool = context.GetJavaScriptEnginePool(x =>
+            IJavaScriptEngine EngineFunc()
             {
-                if (dictionary.ContainsKey(HighlightJsFile))
+                return context.GetJavaScriptEngine(x =>
                 {
-                    x.ExecuteFile(dictionary.GetString(HighlightJsFile));
-                }
-                else
-                {
-                    x.ExecuteResource("highlight.js", typeof(Statiq.Highlight.HighlightCode));
-                }
-            }))
-            {
-                AngleSharp.Dom.IDocument htmlDocument = HtmlHelper.DefaultHtmlParser.ParseDocument(string.Empty);
-                AngleSharp.Dom.IElement element = htmlDocument.CreateElement(dictionary.GetString(Element, "code"));
-                element.InnerHtml = content.Trim();
-                if (dictionary.ContainsKey(Language))
-                {
-                    element.SetAttribute("class", $"language-{dictionary.GetString("Language")}");
-                }
-                HighlightCode.HighlightElement(enginePool, element);
-                if (dictionary.GetBool(AddPre) || (!dictionary.ContainsKey(AddPre) && content.Contains('\n')))
-                {
-                    return $"<pre>{element.OuterHtml}</pre>";
-                }
-                return element.OuterHtml;
+                    if (dictionary.ContainsKey(HighlightJsFile))
+                    {
+                        x.ExecuteFile(dictionary.GetString(HighlightJsFile));
+                    }
+                    else
+                    {
+                        x.ExecuteResource("highlight.js", typeof(Statiq.Highlight.HighlightCode));
+                    }
+                });
             }
+
+            AngleSharp.Dom.IDocument htmlDocument = HtmlHelper.DefaultHtmlParser.ParseDocument(string.Empty);
+            AngleSharp.Dom.IElement element = htmlDocument.CreateElement(dictionary.GetString(Element, "code"));
+            element.InnerHtml = content.Trim();
+            if (dictionary.ContainsKey(Language))
+            {
+                element.SetAttribute("class", $"language-{dictionary.GetString("Language")}");
+            }
+            HighlightCode.HighlightElement(EngineFunc, element);
+            if (dictionary.GetBool(AddPre) || (!dictionary.ContainsKey(AddPre) && content.Contains('\n')))
+            {
+                return $"<pre>{element.OuterHtml}</pre>";
+            }
+            return element.OuterHtml;
         }
     }
 }

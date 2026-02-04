@@ -5,10 +5,7 @@ using System.Text;
 namespace Statiq.Common
 {
     /// <summary>
-    /// A common interface to a JavaScript engine. Every JavaScript engine is
-    /// obtained from a <see cref="IJavaScriptEnginePool"/> and will be returned to the
-    /// pool when it is disposed. Therefore, you must dispose the engine when
-    /// you are done with it.
+    /// A common interface to a JavaScript engine.
     /// </summary>
     public interface IJavaScriptEngine : IDisposable
     {

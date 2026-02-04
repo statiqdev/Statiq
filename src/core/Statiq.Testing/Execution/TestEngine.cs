@@ -195,13 +195,12 @@ namespace Statiq.Testing
             };
 
         /// <inheritdoc/>
-        public IJavaScriptEnginePool GetJavaScriptEnginePool(
-            Action<IJavaScriptEngine> initializer = null,
-            int startEngines = 10,
-            int maxEngines = 25,
-            int maxUsagesPerEngine = 100,
-            TimeSpan? engineTimeout = null) =>
-            new TestJsEnginePool(JsEngineFunc, initializer);
+        public IJavaScriptEngine GetJavaScriptEngine(Action<IJavaScriptEngine> configureEngine = null)
+        {
+            IJavaScriptEngine engine = JsEngineFunc();
+            configureEngine?.Invoke(engine);
+            return engine;
+        }
 
         public Func<IJavaScriptEngine> JsEngineFunc { get; set; } = () =>
             throw new NotImplementedException("JavaScript test engine not initialized. Statiq.Testing.JavaScript can be used to return a working JavaScript engine");

@@ -182,26 +182,10 @@ namespace Statiq.Common
         Task<HttpResponseMessage> SendHttpRequestWithRetryAsync(Func<HttpRequestMessage> requestFactory, int retryCount);
 
         /// <summary>
-        /// Gets a new <see cref="IJavaScriptEnginePool"/>. The returned engine pool should be disposed
-        /// when no longer needed.
+        /// Gets a new <see cref="IJavaScriptEngine"/>.
         /// </summary>
-        /// <param name="initializer">
-        /// The code to run when a new engine is created. This should configure
-        /// the environment and set up any required JavaScript libraries.
-        /// </param>
-        /// <param name="startEngines">The number of engines to initially start when a pool is created.</param>
-        /// <param name="maxEngines">The maximum number of engines that will be created in the pool.</param>
-        /// <param name="maxUsagesPerEngine">The maximum number of times an engine can be reused before it is disposed.</param>
-        /// <param name="engineTimeout">
-        /// The default timeout to use when acquiring an engine from the pool (defaults to 5 seconds).
-        /// If an engine can not be acquired in this time frame, an exception will be thrown.
-        /// </param>
-        /// <returns>A new JavaScript engine pool.</returns>
-        IJavaScriptEnginePool GetJavaScriptEnginePool(
-            Action<IJavaScriptEngine> initializer = null,
-            int startEngines = 10,
-            int maxEngines = 25,
-            int maxUsagesPerEngine = 100,
-            TimeSpan? engineTimeout = null);
+        /// <param name="configureEngine">Optional delegate to configure the engine.</param>
+        /// <returns>A new JavaScript engine.</returns>
+        IJavaScriptEngine GetJavaScriptEngine(Action<IJavaScriptEngine> configureEngine = null);
     }
 }

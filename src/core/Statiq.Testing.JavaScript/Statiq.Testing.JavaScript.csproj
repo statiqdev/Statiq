@@ -4,8 +4,8 @@
     <PackageTags>Statiq Static StaticContent StaticSite Blog BlogEngine</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="JavaScriptEngineSwitcher.Core" Version="3.21.0" />
-    <PackageReference Include="JavaScriptEngineSwitcher.Jint" Version="3.21.2" />
+    <PackageReference Include="JavaScriptEngineSwitcher.Core" Version="3.24.1" />
+    <PackageReference Include="JavaScriptEngineSwitcher.Jint" Version="3.30.4" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Statiq.Common\Statiq.Common.csproj" />
