@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Markdig.Extensions.TextRenderer;
 using NUnit.Framework;
 using Shouldly;
 using Statiq.Common;
@@ -472,6 +473,30 @@ Looking @Good, \@Man!
 
                 // Then
                 result.Content.ShouldBe(output, StringCompareShould.IgnoreLineEndings);
+            }
+
+            [Test]
+            public async Task EscapeAtShouldPreserveNewLineConfiguration()
+            {
+                // Given
+                const string input = @"paragraph 1
+
+paragraph 2
+";
+
+                TestDocument document = new TestDocument(input);
+                RenderMarkdown markdown = new RenderMarkdown();
+
+                // Configure a "newline" that no one actually uses so it's easy to verify
+                markdown.UseExtension(new ConfigureNewLineExtension("[newline]"));
+
+                const string expected = @"<p>paragraph 1</p>[newline]<p>paragraph 2</p>[newline]";
+
+                // When
+                TestDocument result = await ExecuteAsync(document, markdown).SingleAsync();
+
+                // Then
+                result.Content.ShouldBe(expected, StringCompareShould.IgnoreLineEndings);
             }
 
             [Test]
