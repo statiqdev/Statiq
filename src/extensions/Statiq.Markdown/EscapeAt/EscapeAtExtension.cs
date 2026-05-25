@@ -15,7 +15,14 @@ namespace Statiq.Markdown.EscapeAt
         {
             renderer.ObjectRenderers.AddIfNotAlready(new EscapeAtInlineRenderer());
             HtmlRenderer htmlRenderer = (HtmlRenderer)renderer;
+
+             // Setting the Writer for the HTML renderer will reset the new line character to the Markdig default "\n"
+            // If we've modified the intended newline character (e.g., via the Markdig ConfigureNewLineExtension),
+            // we'll need to preserve that setting.
+            string newLine = htmlRenderer.Writer.NewLine;
+
             htmlRenderer.Writer = new EscapeAtWriter(htmlRenderer.Writer);
+            htmlRenderer.Writer.NewLine = newLine;
         }
     }
 }
