@@ -1,0 +1,65 @@
+<Solution>
+  <Folder Name="/examples/">
+    <Project Path="examples/Statiq.Web.Examples/Statiq.Web.Examples.csproj" />
+  </Folder>
+  <Folder Name="/src/" />
+  <Folder Name="/src/core/">
+    <Project Path="src/core/Statiq.App/Statiq.App.csproj" />
+    <Project Path="src/core/Statiq.Common/Statiq.Common.csproj" />
+    <Project Path="src/core/Statiq.Core/Statiq.Core.csproj" />
+    <Project Path="src/core/Statiq.Testing.JavaScript/Statiq.Testing.JavaScript.csproj" />
+    <Project Path="src/core/Statiq.Testing/Statiq.Testing.csproj" />
+  </Folder>
+  <Folder Name="/src/extensions/">
+    <Project Path="src/extensions/Statiq.CodeAnalysis/Statiq.CodeAnalysis.csproj" />
+    <Project Path="src/extensions/Statiq.Feeds/Statiq.Feeds.csproj" />
+    <Project Path="src/extensions/Statiq.Handlebars/Statiq.Handlebars.csproj" />
+    <Project Path="src/extensions/Statiq.Highlight/Statiq.Highlight.csproj" />
+    <Project Path="src/extensions/Statiq.Images/Statiq.Images.csproj" />
+    <Project Path="src/extensions/Statiq.Less/Statiq.Less.csproj" />
+    <Project Path="src/extensions/Statiq.Lunr/Statiq.Lunr.csproj" />
+    <Project Path="src/extensions/Statiq.Markdown/Statiq.Markdown.csproj" />
+    <Project Path="src/extensions/Statiq.Minification/Statiq.Minification.csproj" />
+    <Project Path="src/extensions/Statiq.Razor/Statiq.Razor.csproj" />
+    <Project Path="src/extensions/Statiq.Sass/Statiq.Sass.csproj" />
+    <Project Path="src/extensions/Statiq.Scriban/Statiq.Scriban.csproj" />
+    <Project Path="src/extensions/Statiq.Tables/Statiq.Tables.csproj" />
+    <Project Path="src/extensions/Statiq.Web.Aws/Statiq.Web.Aws.csproj" />
+    <Project Path="src/extensions/Statiq.Web.Azure/Statiq.Web.Azure.csproj" />
+    <Project Path="src/extensions/Statiq.Web.GitHub/Statiq.Web.GitHub.csproj" />
+    <Project Path="src/extensions/Statiq.Web.Hosting/Statiq.Web.Hosting.csproj" />
+    <Project Path="src/extensions/Statiq.Web.Netlify/Statiq.Web.Netlify.csproj" />
+    <Project Path="src/extensions/Statiq.Web.Templates/Statiq.Web.Templates.csproj" />
+    <Project Path="src/extensions/Statiq.Web/Statiq.Web.csproj" />
+    <Project Path="src/extensions/Statiq.Xmp/Statiq.Xmp.csproj" />
+    <Project Path="src/extensions/Statiq.Yaml/Statiq.Yaml.csproj" />
+    <Project Path="src/extensions/Statiq.YouTube/Statiq.YouTube.csproj" />
+  </Folder>
+  <Folder Name="/tests/" />
+  <Folder Name="/tests/core/">
+    <Project Path="tests/core/Statiq.App.Tests/Statiq.App.Tests.csproj" />
+    <Project Path="tests/core/Statiq.Common.Tests/Statiq.Common.Tests.csproj" />
+    <Project Path="tests/core/Statiq.Core.Tests/Statiq.Core.Tests.csproj" />
+    <Project Path="tests/core/TestConsoleApp/TestConsoleApp.csproj" />
+  </Folder>
+  <Folder Name="/tests/extensions/">
+    <Project Path="tests/extensions/Statiq.CodeAnalysis.Tests/Statiq.CodeAnalysis.Tests.csproj" />
+    <Project Path="tests/extensions/Statiq.Feeds.Tests/Statiq.Feeds.Tests.csproj" />
+    <Project Path="tests/extensions/Statiq.Handlebars.Tests/Statiq.Handlebars.Tests.csproj" />
+    <Project Path="tests/extensions/Statiq.Highlight.Tests/Statiq.Highlight.Tests.csproj" />
+    <Project Path="tests/extensions/Statiq.Images.Tests/Statiq.Images.Tests.csproj" />
+    <Project Path="tests/extensions/Statiq.Less.Tests/Statiq.Less.Tests.csproj" />
+    <Project Path="tests/extensions/Statiq.Lunr.Tests/Statiq.Lunr.Tests.csproj" />
+    <Project Path="tests/extensions/Statiq.Markdown.Tests/Statiq.Markdown.Tests.csproj" />
+    <Project Path="tests/extensions/Statiq.Minification.Tests/Statiq.Minification.Tests.csproj" />
+    <Project Path="tests/extensions/Statiq.Razor.Tests/Statiq.Razor.Tests.csproj" />
+    <Project Path="tests/extensions/Statiq.Sass.Tests/Statiq.Sass.Tests.csproj" />
+    <Project Path="tests/extensions/Statiq.Scriban.Tests/Statiq.Scriban.Tests.csproj" />
+    <Project Path="tests/extensions/Statiq.Tables.Tests/Statiq.Tables.Tests.csproj" />
+    <Project Path="tests/extensions/Statiq.Web.Hosting.Tests/Statiq.Web.Hosting.Tests.csproj" />
+    <Project Path="tests/extensions/Statiq.Web.Tests/Statiq.Web.Tests.csproj" />
+    <Project Path="tests/extensions/Statiq.Xmp.Tests/Statiq.Xmp.Tests.csproj" />
+    <Project Path="tests/extensions/Statiq.Yaml.Tests/Statiq.Yaml.Tests.csproj" />
+    <Project Path="tests/extensions/Statiq.YouTube.Tests/Statiq.YouTube.Tests.csproj" />
+  </Folder>
+</Solution>

@@ -1,14 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>Statiq is a configurable static content generation framework. This library provides support for performing code analysis.</Description>
     <PackageTags>Statiq Static StaticContent StaticSite Blog BlogEngine CodeAnalysis Roslyn XmlDocComments DocComments</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Buildalyzer.Workspaces" Version="8.0.0" />
-    <PackageReference Include="System.Linq.Async" Version="7.0.0" />
-    <PackageReference Include="Microsoft.Build" Version="18.0.2" />
-    <PackageReference Include="Microsoft.Build.Tasks.Core" Version="18.0.2" />
-    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="18.0.2" />
+    <PackageReference Include="Buildalyzer.Workspaces" />
+    <PackageReference Include="Microsoft.Build" />
+    <PackageReference Include="Microsoft.Build.Tasks.Core" />
+    <PackageReference Include="Microsoft.Build.Utilities.Core" />
+    <PackageReference Include="System.Security.Cryptography.Xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\core\Statiq.Common\Statiq.Common.csproj" />

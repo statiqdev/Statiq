@@ -738,7 +738,7 @@ namespace Statiq.Common.Tests.IO
                 NormalizedPath path = new NormalizedPath("temp/hello.txt");
 
                 // When
-                TestDelegate test = () => path.AppendExtension(null);
+                Action test = () => path.AppendExtension(null);
 
                 // Then
                 Assert.That(test, Throws.TypeOf<ArgumentNullException>());
@@ -768,7 +768,7 @@ namespace Statiq.Common.Tests.IO
                 NormalizedPath path = new NormalizedPath("temp/hello.txt");
 
                 // When
-                TestDelegate test = () => path.InsertSuffix(null);
+                Action test = () => path.InsertSuffix(null);
 
                 // Then
                 Assert.That(test, Throws.TypeOf<ArgumentNullException>());
@@ -800,7 +800,7 @@ namespace Statiq.Common.Tests.IO
                 NormalizedPath path = new NormalizedPath("temp/hello.txt");
 
                 // When
-                TestDelegate test = () => path.InsertPrefix(null);
+                Action test = () => path.InsertPrefix(null);
 
                 // Then
                 Assert.That(test, Throws.TypeOf<ArgumentNullException>());
@@ -1048,7 +1048,7 @@ namespace Statiq.Common.Tests.IO
                 NormalizedPath path = new NormalizedPath("assets");
 
                 // When
-                TestDelegate test = () => path.GetFilePath(null);
+                Action test = () => path.GetFilePath(null);
 
                 // Then
                 Assert.That(test, Throws.TypeOf<ArgumentNullException>());
@@ -1091,7 +1091,7 @@ namespace Statiq.Common.Tests.IO
                 NormalizedPath path = new NormalizedPath("assets");
 
                 // When
-                TestDelegate test = () => path.Combine(null);
+                Action test = () => path.Combine(null);
 
                 // Then
                 Assert.That(test, Throws.TypeOf<ArgumentNullException>());
@@ -1184,7 +1184,7 @@ namespace Statiq.Common.Tests.IO
                 NormalizedPath path = new NormalizedPath("assets");
 
                 // When
-                TestDelegate test = () => path.Combine(null);
+                Action test = () => path.Combine(null);
 
                 // Then
                 Assert.That(test, Throws.TypeOf<ArgumentNullException>());

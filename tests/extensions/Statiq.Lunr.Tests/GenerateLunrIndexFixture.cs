@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -497,51 +498,79 @@ namespace Statiq.Lunr.Tests
                 resultsDocument.Content.ShouldNotContain(@"""title"":""Bar""");
             }
 
+            [NonParallelizable]
+            [SetCulture("en-US")]
             [TestCase((int)123, "\"123\"")]
             [TestCase(-123.45F, "\"-123.45\"")]
             [TestCase(true, "\"true\"")]
             [TestCase(new string[] { "123", "456" }, "[\"123\",\"456\"]")]
             public async Task ConvertsResultField(object value, string expected)
             {
-                // Given
-                TestDocument a = new TestDocument((NormalizedPath)"a/a.html", "Fizz")
+                CultureInfo originalCulture = CultureInfo.CurrentCulture;
+                CultureInfo originalDefaultCulture = CultureInfo.DefaultThreadCurrentCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+                CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+                try
                 {
-                    { Keys.Title, "Foo" },
-                    { "AAA", value }
-                };
-                GenerateLunrIndex module = new GenerateLunrIndex()
-                    .WithField("aaa", FieldType.Result)
-                    .ZipResultsFile(false);
+                    // Given
+                    TestDocument a = new TestDocument((NormalizedPath)"a/a.html", "Fizz")
+                    {
+                        { Keys.Title, "Foo" },
+                        { "AAA", value }
+                    };
+                    GenerateLunrIndex module = new GenerateLunrIndex()
+                        .WithField("aaa", FieldType.Result)
+                        .ZipResultsFile(false);
 
-                // When
-                ImmutableArray<TestDocument> results = await ExecuteAsync(new[] { a }, module);
+                    // When
+                    ImmutableArray<TestDocument> results = await ExecuteAsync(new[] { a }, module);
 
-                // Then
-                TestDocument resultsDocument = results.ShouldHaveSingleWithDestination(GenerateLunrIndex.DefaultScriptPath.ChangeExtension(".results.json"));
-                resultsDocument.Content.ShouldContain($@"""aaa"":{expected}");
+                    // Then
+                    TestDocument resultsDocument = results.ShouldHaveSingleWithDestination(GenerateLunrIndex.DefaultScriptPath.ChangeExtension(".results.json"));
+                    resultsDocument.Content.ShouldContain($@"""aaa"":{expected}");
+                }
+                finally
+                {
+                    CultureInfo.CurrentCulture = originalCulture;
+                    CultureInfo.DefaultThreadCurrentCulture = originalDefaultCulture;
+                }
             }
 
+            [NonParallelizable]
+            [SetCulture("en-US")]
             [TestCase((int)123, "\"123\"")]
             [TestCase(-123.45F, "\"123.45\"")] // The "-" gets removed in the index
             [TestCase(true, "\"true\"")]
             public async Task ConvertsSearchableField(object value, string expected)
             {
-                // Given
-                TestDocument a = new TestDocument((NormalizedPath)"a/a.html", "Fizz")
+                CultureInfo originalCulture = CultureInfo.CurrentCulture;
+                CultureInfo originalDefaultCulture = CultureInfo.DefaultThreadCurrentCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+                CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+                try
                 {
-                    { Keys.Title, "Foo" },
-                    { "AAA", value }
-                };
-                GenerateLunrIndex module = new GenerateLunrIndex()
-                    .WithField("aaa", FieldType.Searchable)
-                    .ZipIndexFile(false);
+                    // Given
+                    TestDocument a = new TestDocument((NormalizedPath)"a/a.html", "Fizz")
+                    {
+                        { Keys.Title, "Foo" },
+                        { "AAA", value }
+                    };
+                    GenerateLunrIndex module = new GenerateLunrIndex()
+                        .WithField("aaa", FieldType.Searchable)
+                        .ZipIndexFile(false);
 
-                // When
-                ImmutableArray<TestDocument> results = await ExecuteAsync(new[] { a }, module);
+                    // When
+                    ImmutableArray<TestDocument> results = await ExecuteAsync(new[] { a }, module);
 
-                // Then
-                TestDocument indexDocument = results.ShouldHaveSingleWithDestination(GenerateLunrIndex.DefaultScriptPath.ChangeExtension(".index.json"));
-                indexDocument.Content.ShouldContain(expected);
+                    // Then
+                    TestDocument indexDocument = results.ShouldHaveSingleWithDestination(GenerateLunrIndex.DefaultScriptPath.ChangeExtension(".index.json"));
+                    indexDocument.Content.ShouldContain(expected);
+                }
+                finally
+                {
+                    CultureInfo.CurrentCulture = originalCulture;
+                    CultureInfo.DefaultThreadCurrentCulture = originalDefaultCulture;
+                }
             }
 
             [Test]

@@ -139,7 +139,7 @@ namespace Statiq.Handlebars.Tests
                 const string input = @"{{#names}}
   {{> user}}
 {{/names}}";
-                const string output = @"<strong>Karen</strong><strong>Jon</strong>";
+                const string output = @"  <strong>Karen</strong>  <strong>Jon</strong>";
                 TestDocument document = new TestDocument(
                     new MetadataItems
                     {
@@ -260,7 +260,7 @@ The animal, Chewy, is not a dog.
                 const string input = @"{{#names}}
   {{> user}}
 {{/names}}";
-                const string output = @"<strong>Karen</strong><strong>Jon</strong>";
+                const string output = @"  <strong>Karen</strong>  <strong>Jon</strong>";
                 TestDocument document = new TestDocument(
                     new MetadataItems
                     {

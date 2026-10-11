@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>Statiq is a configurable static content generation framework. This library provides support for interacting with AWS.</Description>
     <PackageTags>Statiq Static StaticContent StaticSite Blog BlogEngine AmazonWebServices AWS</PackageTags>
@@ -7,7 +7,7 @@
     <ProjectReference Include="..\..\core\Statiq.Common\Statiq.Common.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="Newtonsoft.Json" />
   </ItemGroup>
 
 </Project>

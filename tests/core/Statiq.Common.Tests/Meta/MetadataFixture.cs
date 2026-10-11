@@ -20,7 +20,7 @@ namespace Statiq.Common.Tests.Meta
                 Metadata metadata = new Metadata(initialMetadata);
 
                 // When
-                TestDelegate test = () =>
+                Action test = () =>
                 {
                     object value = metadata["A"];
                 };
@@ -37,7 +37,7 @@ namespace Statiq.Common.Tests.Meta
                 Metadata metadata = new Metadata(initialMetadata);
 
                 // When
-                TestDelegate test = () =>
+                Action test = () =>
                 {
                     object value = metadata[null];
                 };
