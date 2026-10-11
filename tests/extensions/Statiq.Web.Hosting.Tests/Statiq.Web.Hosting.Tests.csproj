@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
   </PropertyGroup>
@@ -16,8 +16,8 @@
     <ProjectReference Include="..\..\..\src\core\Statiq.Testing\Statiq.Testing.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="10.0.1" />
-    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="10.0.1" />  <!-- Required for GenerateEmbeddedFilesManifest task -->
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" />  <!-- Required for GenerateEmbeddedFilesManifest task -->
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="wwwroot\BasicHtmlDocument.html" />

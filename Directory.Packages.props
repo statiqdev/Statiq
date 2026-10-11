@@ -1,0 +1,83 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="AngleSharp" Version="1.8.4" />
+    <PackageVersion Include="Azure.Search.Documents" Version="12.0.0" />
+    <PackageVersion Include="Buildalyzer.Workspaces" Version="9.0.0" />
+    <PackageVersion Include="ConcurrentHashSet" Version="1.3.0" />
+    <PackageVersion Include="CsvHelper" Version="33.1.0" />
+    <PackageVersion Include="dotless.Core" Version="1.6.7" />
+    <!-- EPPlus 5+ switched from LGPL to Polyform Noncommercial/commercial licensing. -->
+    <PackageVersion Include="EPPlus" Version="4.5.2.1" />
+    <PackageVersion Include="Google.Apis" Version="1.77.0" />
+    <PackageVersion Include="Google.Apis.Auth" Version="1.77.0" />
+    <PackageVersion Include="Google.Apis.Core" Version="1.77.0" />
+    <PackageVersion Include="Google.Apis.YouTube.v3" Version="1.77.0.4291" />
+    <PackageVersion Include="Handlebars.Net" Version="2.4.3" />
+    <PackageVersion Include="JavaScriptEngineSwitcher.Core" Version="3.31.0" />
+    <PackageVersion Include="JavaScriptEngineSwitcher.Jint" Version="3.35.2" />
+    <PackageVersion Include="JSPool" Version="4.0.0" />
+    <PackageVersion Include="LunrCore" Version="2.3.10" />
+    <PackageVersion Include="Markdig" Version="1.4.0" />
+    <PackageVersion Include="MetadataExtractor" Version="2.9.3" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Razor.Extensions" Version="6.0.36" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.AspNetCore.Razor.Language" Version="6.0.36" />
+    <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.Build" Version="18.0.2" />
+    <PackageVersion Include="Microsoft.Build.Tasks.Core" Version="18.0.2" />
+    <PackageVersion Include="Microsoft.Build.Utilities.Core" Version="18.0.2" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.10.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.10.0" />
+    <PackageVersion Include="Microsoft.Data.SqlClient" Version="7.1.1" />
+    <PackageVersion Include="Microsoft.Data.SqlClient.Extensions.Azure" Version="7.1.1" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.CommandLine" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Xml" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyModel" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.Extensions.FileProviders.Embedded" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.Extensions.FileSystemGlobbing" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.Extensions.Logging" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.IO.RecyclableMemoryStream" Version="3.0.1" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.10.1" />
+    <PackageVersion Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.14.15" />
+    <PackageVersion Include="NetEscapades.Configuration.Yaml" Version="3.1.0" />
+    <PackageVersion Include="NetEscapades.Extensions.Logging.RollingFile" Version="2.5.0" />
+    <PackageVersion Include="NetFabric.Hyperlinq" Version="3.0.0-beta48" />
+    <PackageVersion Include="NetlifySharp" Version="1.1.1" />
+    <PackageVersion Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageVersion Include="NUnit" Version="5.0.0" />
+    <PackageVersion Include="NUnit3TestAdapter" Version="6.3.1" />
+    <PackageVersion Include="Octokit" Version="14.0.0" />
+    <PackageVersion Include="Polly" Version="8.8.0" />
+    <PackageVersion Include="Roslynator.Analyzers" Version="5.0.1" />
+    <PackageVersion Include="Scriban" Version="7.5.0" />
+    <PackageVersion Include="SemanticVersioning" Version="3.0.0" />
+    <PackageVersion Include="SharpScss" Version="3.0.0" />
+    <PackageVersion Include="SharpZipLib" Version="1.4.2" />
+    <PackageVersion Include="Shouldly" Version="4.3.0" />
+    <!-- Stay on 3.1.12. 3.2.0+ patches these advisories but Release builds require a Six Labors community license file/key; upstream needs to decide whether to obtain one. -->
+    <PackageVersion Include="SixLabors.ImageSharp" Version="3.1.12" />
+    <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-gwg2-r3hj-4w44" />
+    <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-j3p4-wp97-rph4" />
+    <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-j9gm-c75j-xc9q" />
+    <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-jjfr-hcj7-qf5w" />
+    <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-wmxv-xphr-5c9g" />
+    <PackageVersion Include="Spectre.Console" Version="0.57.2" />
+    <PackageVersion Include="Spectre.Console.Cli" Version="0.57.2" />
+    <PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.556" />
+    <PackageVersion Include="System.Drawing.Common" Version="10.0.12" />
+    <PackageVersion Include="System.Security.Cryptography.Xml" Version="10.0.12" />
+    <PackageVersion Include="WebMarkupMin.Core" Version="2.22.5" />
+    <PackageVersion Include="XmpCore" Version="6.1.10.1" />
+    <PackageVersion Include="YamlDotNet" Version="18.1.0" />
+  </ItemGroup>
+</Project>

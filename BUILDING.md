@@ -4,7 +4,7 @@ Statiq Web is a .NET Core library and can be built using standard .NET ecosystem
 
 ## Prerequisites
 
-- [.NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core)
+- [.NET 10 SDK](https://dotnet.microsoft.com/download)
 
 ## Steps
 
@@ -18,5 +18,5 @@ Statiq Web is a .NET Core library and can be built using standard .NET ecosystem
 
 ## Steps
 
-- Open `Statiq.Web.sln`
+- Open `Statiq.slnx`
 - Build from Visual Studio

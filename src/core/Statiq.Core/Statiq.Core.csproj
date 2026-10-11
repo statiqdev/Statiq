@@ -1,19 +1,19 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>Statiq is a configurable static content generation framework.</Description>
     <PackageTags>Statiq Static StaticContent StaticSite Blog BlogEngine</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="JavaScriptEngineSwitcher.Core" Version="3.24.1" />
-    <PackageReference Include="JavaScriptEngineSwitcher.Jint" Version="3.30.3" />
-    <PackageReference Include="JSPool" Version="2.0.1" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.10.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.1" />
-    <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="3.0.1" />
-    <PackageReference Include="Polly" Version="8.6.5" />
-    <PackageReference Include="SemanticVersioning" Version="3.0.0" />
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.3" />
-    <PackageReference Include="System.Linq.Async" Version="7.0.0" />
+    <PackageReference Include="JavaScriptEngineSwitcher.Core" />
+    <PackageReference Include="JavaScriptEngineSwitcher.Jint" />
+    <PackageReference Include="JSPool" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
+    <PackageReference Include="Microsoft.Extensions.Logging" />
+    <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" />
+    <PackageReference Include="Polly" />
+    <PackageReference Include="SemanticVersioning" />
+    <PackageReference Include="Microsoft.Data.SqlClient" />
+    <PackageReference Include="Microsoft.Data.SqlClient.Extensions.Azure" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Statiq.Common\Statiq.Common.csproj" />
